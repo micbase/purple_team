@@ -12,7 +12,8 @@ class system {
             "curl",
             "git-core",
             "build-essential",
-            "python-pip"
+            "python-pip",
+            "python-dev"
         ]:
             ensure  => "present",
             require => Exec["apt-update"];
@@ -21,7 +22,7 @@ class system {
     file {
         "/home/vagrant/.bash_profile":
             ensure  => present,
-            source => "/vagrant/file/.bash_profile";
+            source => "/vagrant/files/bash_profile";
     }
 
 }

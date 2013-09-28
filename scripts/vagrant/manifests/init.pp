@@ -17,17 +17,53 @@ node default {
             grant    => ['ALL'];
     }
 
+    package { "nginx":
+        ensure => installed,
+        require => Exec["apt-update"]
+    }
 
-    class { 'nginx': }
-    nginx::resource::vhost { 'www.localdev.com':
-        ensure   => present,
-        proxy  => 'http://127.0.0.1:8000';
+    service { "nginx":
+        require => Package["nginx"],
+        ensure => running,
+        enable => true;
+    }
+
+    file { "/etc/nginx/sites-available/default":
+        require => Package["nginx"],
+        ensure  => present,
+        source  => "/vagrant/files/nginx.conf",
+        notify  => Service["nginx"];
+    }
+
+    file { "/etc/nginx/sites-enabled/default":
+        require => File["/etc/nginx/sites-available/default"],
+        ensure => "link",
+        target => "/etc/nginx/sites-available/default",
+        notify => Service["nginx"];
     }
 
     exec {
         "pip-install":
             command => "/usr/bin/pip install -r /vagrant/requirements.txt",
-            require => Package[python-pip, python-mysqldb];
+            require => Package[python-pip, python-mysqldb, python-dev];
+    }
+
+    package { "supervisor":
+        ensure => installed,
+        require => Exec["apt-update", "pip-install"]
+    }
+
+    service { "supervisor":
+        require => Package["supervisor"],
+        ensure => running,
+        enable => true;
+    }
+
+    file { "/etc/supervisor/conf.d/django.conf":
+        require => Package["supervisor"],
+        ensure  => present,
+        source  => "/vagrant/files/django_supervisor.conf",
+        notify  => Service["supervisor"];
     }
 
 }

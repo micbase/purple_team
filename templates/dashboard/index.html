@@ -1,0 +1,8 @@
+<%inherit file="/layouts/base.html" />
+<%def name="title()">${ text }</%def>
+<%def name="js_defer()">
+    ${ parent.js_defer() }
+</%def>
+
+
+<h1>${ text }</h1>

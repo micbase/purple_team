@@ -11,20 +11,17 @@ class system {
             "vim",
             "curl",
             "git-core",
-            "php5-common",
-            "php5-cgi",
-            "php5-curl",
-            "php5-gd",
             "build-essential",
             "python-pip"
         ]:
-            ensure  => "present";
+            ensure  => "present",
+            require => Exec["apt-update"];
     }
 
-    exec {
-        "pip-install":
-            command => "/usr/bin/pip install -r /vagrant/requirements.txt",
-            require => Package[python-pip];
+    file {
+        "/home/vagrant/.bash_profile":
+            ensure  => present,
+            source => "/vagrant/file/.bash_profile";
     }
 
 }

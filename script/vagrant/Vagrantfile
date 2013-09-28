@@ -8,6 +8,7 @@ box = {
   :vm_name     => :default,
   :os_name     => 'precise64',
   :ip_address  => '192.168.42.2',
+  :django_fwd  => 8000,
   :mysql_fwd   => 13306,
   :vb_name     => 'purple_team',
   :memory_size => '1024',
@@ -32,6 +33,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # within the machine from a port on the host machine. In the example below,
   # accessing "localhost:8080" will access port 80 on the guest machine.
   config.vm.network :forwarded_port, guest: 3306, host: box[:mysql_fwd]
+  config.vm.network :forwarded_port, guest: 80, host: box[:django_fwd]
 
   # Create a private network, which allows host-only access to the machine
   # using a specific IP.
@@ -51,7 +53,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # the path on the guest to mount the folder. And the optional third
   # argument is a set of non-required options.
   config.vm.synced_folder "~", "/host_home"
-  config.vm.synced_folder "~/Documents/project/purple_team/", "/home/vagrant/htdocs"
+  config.vm.synced_folder "~/Documents/projects/purple_team/", "/home/vagrant/htdocs"
 
   # Provider-specific configuration so you can fine-tune various
   # backing providers for Vagrant. These expose provider-specific options.

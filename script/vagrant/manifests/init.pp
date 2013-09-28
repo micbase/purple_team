@@ -5,8 +5,7 @@ node default {
 
     include system
 
-    class { 'mysql::php': }
-    class { 'mysql::python': }
+    class { 'mysql::bindings::python': }
     class { 'mysql::server':
         config_hash => { 'root_password' => '' }
     }
@@ -15,14 +14,20 @@ node default {
             user     => 'db_user',
             password => 'db_pwd',
             host     => 'localhost',
-            grant    => ['all'],
+            grant    => ['ALL'];
     }
 
 
     class { 'nginx': }
     nginx::resource::vhost { 'www.localdev.com':
         ensure   => present,
-        proxy  => 'http://127.0.0.1:8000',
+        proxy  => 'http://127.0.0.1:8000';
+    }
+
+    exec {
+        "pip-install":
+            command => "/usr/bin/pip install -r /vagrant/requirements.txt",
+            require => Package[python-pip, python-mysqldb];
     }
 
 }

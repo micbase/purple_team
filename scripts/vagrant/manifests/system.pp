@@ -20,9 +20,9 @@ class system {
     }
 
     file {
-        "/home/vagrant/.bash_profile":
+        "/etc/profile.d/bash_profile.sh":
             ensure  => present,
-            source => "/vagrant/files/bash_profile";
+            source => "/vagrant/files/bash_profile.sh";
     }
 
 }

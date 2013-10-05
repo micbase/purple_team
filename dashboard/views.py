@@ -2,7 +2,7 @@
 from django.db.models import Count
 from django.views.generic import ListView, TemplateView
 
-from dashboard.models import UserSkill
+from dashboard.models import UserSkill, Skill
 
 
 class ResultView(ListView):
@@ -10,25 +10,20 @@ class ResultView(ListView):
     paginate_by = 10
 
     def get_queryset(self):
-        s_id = 3
-        w_id = 4
+        strength_name = self.request.GET.get("strength", None)
+        weakness_name = self.request.GET.get("weakness", None)
+
+        s_id = Skill.objects.get(skill_name=strength_name)
+        w_id = Skill.objects.get(skill_name=weakness_name)
 
         strength_match = UserSkill.objects.filter(
             skill_id=s_id,
             scale__lte=5,
-        ).annotate(
-            strength_counter=Count('id'),
-        ).filter(
-            strength_counter__gte=1,
         )
 
         weakness_match = UserSkill.objects.filter(
             skill_id=w_id,
             scale__gte=6,
-        ).annotate(
-            weakness_counter=Count('id'),
-        ).filter(
-            weakness_counter__gte=1,
         )
 
         uid_list = [item.user_id for item in weakness_match]

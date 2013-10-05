@@ -58,7 +58,7 @@ class Skill(models.Model):
 
 class UserSkill(models.Model):
 
-    user = models.ForeignKey(User)
+    user = models.ForeignKey(User, related_name='user_skills')
     skill = models.ForeignKey(Skill)
     scale = models.PositiveSmallIntegerField(
         default=10,

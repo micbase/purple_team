@@ -14,6 +14,13 @@
             height: 100%;
             width: 50%;
         }
+        #content-left h1{
+            font-family: Futura, Helvetica;
+        }
+        #username{
+            font-family: arial;
+            font-size:small;
+        }
 	footer{
 		text-align:center;
 		font-size:12px;
@@ -23,9 +30,7 @@
                 width: 100%;
                 letter-spacing: 3px;
 	}
-        #content-left h1{
-            font-family: Futura, Helvetica, Tomas Laurinavicius;
-        }
+        
         .d2{width:700px; height:300px; position:absolute; top:40%; left:50%; z-index:1;/*background-color:#FF0;*/}
         .d3{ width:700px; height:300px; position:relative; top:-50%; left:-50%;/*background-color:#06C;*/}
         
@@ -58,7 +63,8 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span><span class="icon-bar"></span>
 			</button>
-			<a class="brand" href="#">Yang Zhang</a>
+			<a class="brand" href="#">
+                            <div id="username" ><img src="/static/img/icon.jpg"/>Yang Zhang</div></a>
 			<div class="nav-collapse collapse">
 				<ul class="nav"><li class="active"><a href="#">Home</a></li>
 					<li><a href="#about">About</a></li>
@@ -78,22 +84,36 @@ div class=d2
     <div id="content-inner" class="d3">
         <div id="content-right">
             <article>
-                    <img src="/static/img/books.jpg"/>
+                    <img src="/static/img/studygroup.jpg"/>
             </article>
         </div>
         <div id="content-left">
-            <h1>Study Together</h1>
+            <h1>Study Together</h1><br/>
             <form id="inputForm" action="" method="get">
                     <fieldset>
                             <div class="form-group">
                                     <p> <label for="strength" id="strengthText">Strength:</label><input type="text" name="strength" id="strength"> </p>
                                     <p> <label for="weakness" id="weaknessText">Weakness:</label><input type="text" name="weakness" id="weakness"> </p> 
-                                    <input type="submit" value="Search" class="btn btn-primary" id="search">
+                                    <br/><input type="submit" value="Search" class="btn btn-primary" id="search">
                                     </div>
                     </fieldset>
             </form>
         </div>
+        
+       
+        
         <div id="lists">
+             <ul class="thumbnails">
+                <li class="span4">
+                  <div class="thumbnail">
+                    <img data-src="holder.js/300x200" alt=""/>
+                    <h3>Sai</h3>
+                    <p>Sai is a good guy!</p>
+                  </div>
+                </li>
+                ...
+            </ul>
+            
             % if  resultset:
                     <ul>
                             % for item in resultset:

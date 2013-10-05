@@ -2,17 +2,18 @@ from django.db import models
 
 # Create your models here.
 
+
 class User(models.Model):
     email = models.EmailField(
         max_length=50,
         default='',
         blank=False,
-    ) 
+    )
     password = models.CharField(
         max_length=50,
         default='',
         blank=False,
-    )  	
+    )
     first_name = models.CharField(
         max_length=50,
         default='',
@@ -22,12 +23,12 @@ class User(models.Model):
         max_length=50,
         default='',
         blank=False,
-    ) 
+    )
     phonenumber = models.CharField(
         max_length=15,
         default='',
         blank=False,
-    )      
+    )
     bio = models.CharField(
         max_length=150,
         default='',
@@ -55,25 +56,16 @@ class Skill(models.Model):
         db_table = 'Skills'
 
 
-class Strength(models.Model):
+class UserSkill(models.Model):
 
     uid = models.ForeignKey(User)
     skill_id = models.ForeignKey(Skill)
+    scale = models.PositiveSmallIntegerField(
+        default=10,
+    )
 
     def __unicode__(self):
         return self.id
 
     class Meta:
-        db_table = 'Strengths'
-
-
-class Weakness(models.Model):
-
-    uid = models.ForeignKey(User)
-    skill_id = models.ForeignKey(Skill)
-
-    def __unicode__(self):
-        return self.id
-
-    class Meta:
-        db_table = 'Weaknesses'
+        db_table = 'UserSkills'

@@ -1,12 +1,12 @@
 
 from django.db.models import Count
-from django.views.generic import ListView
+from django.views.generic import ListView, TemplateView
 
 from dashboard.models import UserSkill
 
 
-class DashboardView(ListView):
-    template_name = 'dashboard/index.html'
+class ResultView(ListView):
+    template_name = 'dashboard/result.html'
     paginate_by = 10
 
     def get_queryset(self):
@@ -36,6 +36,15 @@ class DashboardView(ListView):
                 if item.user_id in uid_list]
 
         return final_user
+
+    def get_context_data(self, **kwargs):
+        context = super(ResultView, self).get_context_data(**kwargs)
+        context['text'] = 'Hello World, Purple Team'
+        return context
+
+
+class DashboardView(TemplateView):
+    template_name = 'dashboard/index.html'
 
     def get_context_data(self, **kwargs):
         context = super(DashboardView, self).get_context_data(**kwargs)

@@ -89,7 +89,7 @@ div class=d2
         </div>
         <div id="content-left">
             <h1>Study Together</h1><br/>
-            <form id="inputForm" action="" method="get">
+            <form id="inputForm" action="result" method="get">
                     <fieldset>
                             <div class="form-group">
                                     <p> <label for="strength" id="strengthText">Strength:</label><input type="text" name="strength" id="strength"> </p>
@@ -99,25 +99,29 @@ div class=d2
                     </fieldset>
             </form>
         </div>
-        
-       
-        
-        <div id="lists">
-             <ul class="thumbnails">
-                <li class="span4">
-                  <div class="thumbnail">
-                    <img data-src="holder.js/300x200" alt=""/>
-                    <h3>Sai</h3>
-                    <p>Sai is a good guy!</p>
-                  </div>
-                </li>
-                ...
-            </ul>
             
-            % if  resultset:
-                    <ul>
-                            % for item in resultset:
-                                    <li>  ${item} </li>
+           % if  object_list:
+                   <ul class="thumbnails">
+                           % for person in object_list:
+                                    <li class="span4"> 
+ 													<div class="thumbnail">
+								                  <h3>Name: ${person.first_name} ${person.last_name}</h3>
+								                  <p>Bio: ${person.bio}</p>
+														
+														# Contact Info	
+								 						<p>Email: ${person.email}</p>
+								 						<p>Ph: ${person.phonenumber}</p>
+								
+														<p>Strength</p>
+								 						% for s in person.user_skills.filter(scale__gte=6):
+								 							<p>s.skill.skill_name</p>
+														% endfor
+														
+														<p>Weakness</p>
+									 					% for s in person.user_skills.filter(scale__lte=5):
+								 							<p>s.skill.skill_name</p>
+														% endfor
+												</li>
                             % endfor
                     </ul>
             % endif 

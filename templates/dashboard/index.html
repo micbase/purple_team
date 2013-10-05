@@ -1,8 +1,114 @@
 <%inherit file="/layouts/base.html" />
+<style type="text/css">
+	#content{
+		margin: 50px 0px 20px 0px;
+                position: fixed;
+	}
+        #content-left{
+            float: left;
+            height: 100%;
+            width: 50%;
+        }
+        #content-right{
+            float: right;
+            height: 100%;
+            width: 50%;
+        }
+	footer{
+		text-align:center;
+		font-size:12px;
+                /*border-top: 2px dashed #000;*/
+                background-color: black;
+                color:white;
+                width: 100%;
+                letter-spacing: 3px;
+	}
+        #content-left h1{
+            font-family: Futura, Helvetica, Tomas Laurinavicius;
+        }
+        .d2{width:700px; height:300px; position:absolute; top:40%; left:50%; z-index:1;/*background-color:#FF0;*/}
+        .d3{ width:700px; height:300px; position:relative; top:-50%; left:-50%;/*background-color:#06C;*/}
+        
+
+</style>
+
 <%def name="title()">${ text }</%def>
 <%def name="js_defer()">
     ${ parent.js_defer() }
+	<script>
+	$(document).ready(function() {
+		$("#inputForm").validate({
+			rules: {
+				strength: "required",
+				weakness: "required"
+			},
+			messages: {
+				strength: "Please enter your strength",
+				weakness: "Please enter your weakness"
+			}
+		});
+	});
+	</script>
 </%def>
 
+<header>
+	<div class="navbar navbar-inverse navbar-fixed-top">
+		<div class="navbar-inner"><div class="container">
+			<button class="btn btn-navbar" data-target=".nav-collapse" data-toggle="collapse" type="button">
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span><span class="icon-bar"></span>
+			</button>
+			<a class="brand" href="#">Yang Zhang</a>
+			<div class="nav-collapse collapse">
+				<ul class="nav"><li class="active"><a href="#">Home</a></li>
+					<li><a href="#about">About</a></li>
+					<li><a href="#contact">Contact</a></li>
+				</ul>
+			</div>
+	        <!--/.nav-collapse -->
+	    </div>
+	</div>
+</header>
+div class=d2
+    div class=d3this
+    /div
+/div
 
-<h1>${ text }</h1>
+<div id="content" class="d2">
+    <div id="content-inner" class="d3">
+        <div id="content-right">
+            <article>
+                    <img src="/static/img/books.jpg"/>
+            </article>
+        </div>
+        <div id="content-left">
+            <h1>Study Together</h1>
+            <form id="inputForm" action="" method="get">
+                    <fieldset>
+                            <div class="form-group">
+                                    <p> <label for="strength" id="strengthText">Strength:</label><input type="text" name="strength" id="strength"> </p>
+                                    <p> <label for="weakness" id="weaknessText">Weakness:</label><input type="text" name="weakness" id="weakness"> </p> 
+                                    <input type="submit" value="Search" class="btn btn-primary" id="search">
+                                    </div>
+                    </fieldset>
+            </form>
+        </div>
+        <div id="lists">
+            % if  resultset:
+                    <ul>
+                            % for item in resultset:
+                                    <li>  ${item} </li>
+                            % endfor
+                    </ul>
+            % endif 
+        </div>
+    </div>
+</div>
+
+<footer class="navbar navbar-fixed-bottom">
+	<p> copyright 2013 &copy; purplegroup</p>
+</footer>
+
+
+
+

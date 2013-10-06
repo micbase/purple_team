@@ -30,7 +30,7 @@ class User(models.Model):
         blank=False,
     )
     bio = models.CharField(
-        max_length=150,
+        max_length=500,
         default='',
         blank=True,
     )

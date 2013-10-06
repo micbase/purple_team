@@ -1,5 +1,4 @@
 
-from django.db.models import Count
 from django.views.generic import ListView, TemplateView
 
 from dashboard.models import UserSkill, Skill
@@ -13,8 +12,11 @@ class ResultView(ListView):
         strength_name = self.request.GET.get("strength", None)
         weakness_name = self.request.GET.get("weakness", None)
 
-        s_id = Skill.objects.get(skill_name=strength_name)
-        w_id = Skill.objects.get(skill_name=weakness_name)
+        try:
+            s_id = Skill.objects.get(skill_name__iexact=strength_name)
+            w_id = Skill.objects.get(skill_name__iexact=weakness_name)
+        except Skill.DoesNotExist:
+            return []
 
         strength_match = UserSkill.objects.filter(
             skill_id=s_id,

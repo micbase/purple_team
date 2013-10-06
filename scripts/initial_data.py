@@ -1,41 +1,41 @@
 from dashboard.models import User, Skill, UserSkill
 
-user_1 = User(email="zhuxiaofengWWW@gmail.com", password="purpleTeam",
+user_1 = User(email="johnshay@gmail.com", password="purpleTeam",
         first_name="John", last_name="Shay",
         phonenumber="7739881897", bio="I'm a graduate student majored in BME. I love cooking. And because of my major, I need to learn a kind of programming language. I think Java is prety commono. Other language is fine, too.")
 user_1.save()
 
-user_2 = User(email="zhuxiaofengwww@126.com", password="purpleTeam",
+user_2 = User(email="tomasgu@126.com", password="purpleTeam",
         first_name="Thomas", last_name="Gu",
         phonenumber="8478078707", bio="My name is Thomas. My interest lies at Cartoon and all things relative with cartoon. Also I'm a student of McComic. I enjoy coding!")
 user_2.save()
 
-user_3 = User(email="zhuxiaofengWWW@sina.com", password="purpleTeam",
+user_3 = User(email="zynsun001@gmail.com", password="purpleTeam",
         first_name="Jiachen", last_name="Xu",
         phonenumber="7739881897", bio="I'm a Chinese boy and I really enjoy Chinese food. Aside from my strength above, I still enjoys eating delicious food. So anything about eating, I'm more than glad to discuss with you!")
 user_3.save()
 
-user_4 = User(email="zhuxiaofengwww@sohu.com", password="purpleTeam",
+user_4 = User(email="hyojunlee@yahoo.com", password="purpleTeam",
         first_name="Hyojun", last_name="Lee",
         phonenumber="7739881897", bio="I'm an American girl. I like to making friends with different kind of people. I ike party. So if you are interested in my strength or a party girl, jion me!")
 user_4.save()
 
-user_5 = User(email="ddzhuxiaofengwww@sohu.com", password="purpleTeam",
+user_5 = User(email="xuxiaof@sohu.com", password="purpleTeam",
         first_name="Xiaofeng", last_name="Xu",
         phonenumber="7739881897", bio="I'm a Chinese girl, who is crazy about shopping.")
 user_5.save()
 
-user_6 = User(email="ddzhuxiaofengwww@sohu.com", password="purpleTeam",
+user_6 = User(email="sunzhuyun@gmail.com", password="purpleTeam",
         first_name="Zhiyuan", last_name="Sun",
         phonenumber="7739881897", bio="I'm a software Engineer with extensive exp and management skills and works for a hi-tech telecommunication company. I like making friends. :) ")
 user_6.save()
 
-user_7 = User(email="ddzhuxiaofengwww@sohu.com", password="purpleTeam",
+user_7 = User(email="hansone@hotmail.com", password="purpleTeam",
         first_name="Hanson", last_name="Eve",
         phonenumber="7739881897", bio="I'm a software engineer graduate from Northwestern. I like cooking and dancing. ")
 user_7.save()
 
-user_8 = User(email="ddzhuxiaofengwww@sohu.com", password="purpleTeam",
+user_8 = User(email="yang@google.com", password="purpleTeam",
         first_name="Yang", last_name="Zhang",
         phonenumber="7739881897", bio="I a Chinese girl. I  was born in Sichuan, China which is famous for its great weather and delicious food. I will get my bachelor degree in Information Science. Designs, Open Source, Web Standards are mostly what interest me every time. ")
 user_8.save()
@@ -95,6 +95,5 @@ uskill_21 = UserSkill(user=user_7, skill=skill_2, scale=10)
 uskill_21.save()
 uskill_22 = UserSkill(user=user_8, skill=skill_3, scale=1)
 uskill_22.save()
-uskill_23 = UserSkill(user=user_8, skill=skill_4m scale=10)
+uskill_23 = UserSkill(user=user_8, skill=skill_4, scale=10)
 uskill_23.save()
-

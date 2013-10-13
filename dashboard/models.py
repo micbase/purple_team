@@ -85,8 +85,12 @@ class Event(models.Model):
         blank=False,
     )    
     #dateAdded=models.DateField(blank=True )
-    created = models.DateTimeField(auto_now_add=True, blank=True)
-    ended = models.DateTimeField(auto_now_add=True, blank=True)
+    created = models.DateTimeField(auto_now=False, auto_now_add=False, blank=True)
+    ended = models.DateTimeField(auto_now=False, auto_now_add=False,  blank=True)
+    location=models.CharField(
+        max_length=50,
+        default='',
+        blank=False)
     status= models. BooleanField(default=False)
     details = models.CharField(
         max_length=800,

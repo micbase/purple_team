@@ -19,6 +19,7 @@ class GroupInfoView(DetailView):
     def get_context_data(self, **kwargs):
         context = super(GroupInfoView, self).get_context_data(**kwargs)
         context['text'] = 'Hello World, Purple Team'
+        context['events'] = self.get_events()
         return context
 
 

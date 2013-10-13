@@ -3,13 +3,13 @@ import datetime
 
 user_1 = User(email="zhuxiaofengWWW@gmail.com", password="purpleTeam",
 	 first_name="Deborah", last_name="Farquharson",
-	phonenumber="7739881897", bio="Senior Java Swing Developer - Java, Swing, Java RMI")
+	phonenumber="7739881897", bio="Senior Java Swing Developer Java, Swing, Java RMI")
 user_1.save()
 
 
 user_2 = User(email="aCramond@sina.com", password="purpleTeam",
 	 first_name="Amee", last_name="Cramond",
-	phonenumber="8478078707", bio="Senior Microsoft Dynamics CRM Developer/Consultant")
+	phonenumber="8478078707", bio="Senior Microsoft Dynamics CRM Developer Consultant")
 user_2.save()
 
 

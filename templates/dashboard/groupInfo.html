@@ -18,7 +18,7 @@
     <!--<div id="content-inner" class="d3">-->
         <!--list starts here-->
         % if  group:
-            <h3>${group.name}</h3>
+            <h3>${group.group_name}</h3>
             <div class="text-info">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${group.description}</div>
 				
 				<hr>
@@ -28,15 +28,17 @@
 				${group.manager.phonenumber}</p>
 				
 				<hr>
-            <div class="text-info"> 
-				Events:</div><br/>
-            % for e in group.events:
-            <h4>${e.name}</h4>
-				<span class="label label-default">${e.start_time} - ${e.end_time}</span>
-				<span class="label label-primary">${e.location}</span>
-				<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${e.description}</p>
-				<hr>
-            % endfor
+				% if events:
+	            <div class="text-info"> 
+					Events:</div><br/>
+	            % for e in events:
+	            <h4>${e.name}</h4>
+					<span class="label label-default">${e.start_time} - ${e.end_time}</span>
+					<span class="label label-primary">${e.location}</span>
+					<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${e.description}</p>
+					<hr>
+	            % endfor
+				% endif
         % endif
         <!--</div>-->
     <!--</div>-->

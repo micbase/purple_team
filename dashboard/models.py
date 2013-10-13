@@ -1,11 +1,12 @@
 from django.db import models
 
+
 # Create your models here.
 
 
 class User(models.Model):
     email = models.EmailField(
-        max_length=50,
+        max_length=100,
         default='',
         blank=False,
     )
@@ -34,6 +35,7 @@ class User(models.Model):
         default='',
         blank=True,
     )
+  
 
     def __unicode__(self):
         return self.email
@@ -42,30 +44,60 @@ class User(models.Model):
         db_table = 'Users'
 
 
-class Skill(models.Model):
-    skill_name = models.CharField(
-        max_length=50,
+class Group(models.Model):
+    group_name = models.CharField(
+        max_length=150,
         default='',
         blank=False,
     )
+    description = models.CharField(
+        max_length=400,
+        default='',
+        blank=True,
+    )    
+    manager = models.ForeignKey(User)
 
     def __unicode__(self):
-        return self.skill_name
+        return self.name
 
     class Meta:
-        db_table = 'Skills'
+        db_table = 'Groups'
 
 
-class UserSkill(models.Model):
+class Membership(models.Model):
 
-    user = models.ForeignKey(User, related_name='user_skills')
-    skill = models.ForeignKey(Skill)
-    scale = models.PositiveSmallIntegerField(
-        default=10,
-    )
+    member = models.ForeignKey(User)
+    group = models.ForeignKey(Group)
+    status=models. BooleanField(default=False)
 
     def __unicode__(self):
         return self.id
 
     class Meta:
-        db_table = 'UserSkills'
+        db_table = 'Memberships'
+
+class Event(models.Model):
+
+    group = models.ForeignKey(Group)
+    event_name = models.CharField(
+        max_length=250,
+        default='',
+        blank=False,
+    )    
+    #dateAdded=models.DateField(blank=True )
+    created = models.DateTimeField(auto_now_add=True, blank=True)
+    ended = models.DateTimeField(auto_now_add=True, blank=True)
+    status= models. BooleanField(default=False)
+    details = models.CharField(
+        max_length=800,
+        default='',
+        blank=True,
+    ) 
+
+    def __unicode__(self):
+        return self.id
+
+    class Meta:
+        db_table = 'Events'
+
+     

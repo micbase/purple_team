@@ -1,99 +1,113 @@
-from dashboard.models import User, Skill, UserSkill
+from dashboard.models import User, Group, Membership, Event
+import datetime
 
-user_1 = User(email="johnshay@gmail.com", password="purpleTeam",
-        first_name="John", last_name="Shay",
-        phonenumber="7739881897", bio="I'm a graduate student majored in BME. I love cooking. And because of my major, I need to learn a kind of programming language. I think Java is prety commono. Other language is fine, too.")
+user_1 = User(email="zhuxiaofengWWW@gmail.com", password="purpleTeam",
+	 first_name="Deborah", last_name="Farquharson",
+	phonenumber="7739881897", bio="Senior Java Swing Developer - Java, Swing, Java RMI")
 user_1.save()
 
-user_2 = User(email="tomasgu@126.com", password="purpleTeam",
-        first_name="Thomas", last_name="Gu",
-        phonenumber="8478078707", bio="My name is Thomas. My interest lies at Cartoon and all things relative with cartoon. Also I'm a student of McComic. I enjoy coding!")
+
+user_2 = User(email="aCramond@sina.com", password="purpleTeam",
+	 first_name="Amee", last_name="Cramond",
+	phonenumber="8478078707", bio="Senior Microsoft Dynamics CRM Developer/Consultant")
 user_2.save()
 
-user_3 = User(email="zynsun001@gmail.com", password="purpleTeam",
-        first_name="Jiachen", last_name="Xu",
-        phonenumber="7739881897", bio="I'm a Chinese boy and I really enjoy Chinese food. Aside from my strength above, I still enjoys eating delicious food. So anything about eating, I'm more than glad to discuss with you!")
+
+user_3 = User(email="gToroosian@u.northwestern.edu",password="purpleTeam",
+	 first_name="Greg", last_name="Toroosian",
+	phonenumber="8478078707", bio="Linux Systems Programmer, Leading Futures Trading Firm; Linux, Kernel, Sockets, Reporting Scripts")
 user_3.save()
 
-user_4 = User(email="hyojunlee@yahoo.com", password="purpleTeam",
-        first_name="Hyojun", last_name="Lee",
-        phonenumber="7739881897", bio="I'm an American girl. I like to making friends with different kind of people. I ike party. So if you are interested in my strength or a party girl, jion me!")
+
+user_4 = User(email="rRydbeck@fgcu.edu",password="purpleTeam",
+	 first_name="Rachael", last_name="Rydbeck",
+	phonenumber="7739881897", bio="'The Organic Gourmet' Chef, Author, Speaker, Cooking Classes, Wellness Coach")
 user_4.save()
 
-user_5 = User(email="xuxiaof@sohu.com", password="purpleTeam",
-        first_name="Xiaofeng", last_name="Xu",
-        phonenumber="7739881897", bio="I'm a Chinese girl, who is crazy about shopping.")
+user_5 = User(email="aDulany@gmail.com",password="purpleTeam",
+	 first_name="Andrew", last_name="Dulany",
+	phonenumber="7739881897", bio="Account Executive at Technology Business Research.I'm currently researching in preparation for a possible role as Marketing Director for a semi-professional soccer team.")
 user_5.save()
 
-user_6 = User(email="sunzhuyun@gmail.com", password="purpleTeam",
-        first_name="Zhiyuan", last_name="Sun",
-        phonenumber="7739881897", bio="I'm a software Engineer with extensive exp and management skills and works for a hi-tech telecommunication company. I like making friends. :) ")
-user_6.save()
 
-user_7 = User(email="hansone@hotmail.com", password="purpleTeam",
-        first_name="Hanson", last_name="Eve",
-        phonenumber="7739881897", bio="I'm a software engineer graduate from Northwestern. I like cooking and dancing. ")
-user_7.save()
 
-user_8 = User(email="yang@google.com", password="purpleTeam",
-        first_name="Yang", last_name="Zhang",
-        phonenumber="7739881897", bio="I a Chinese girl. I  was born in Sichuan, China which is famous for its great weather and delicious food. I will get my bachelor degree in Information Science. Designs, Open Source, Web Standards are mostly what interest me every time. ")
-user_8.save()
+group_1 = Group(group_name="CyberCoders", description="We are a technology driven business and the technical landscape here is both advanced and constantly changing as we explore new and more effective ways of creating our products.", manager=user_1)
+group_1.save()
 
-skill_1 = Skill(skill_name="Dancing")
-skill_1.save()
-skill_2 = Skill(skill_name="Java")
-skill_2.save()
-skill_3 = Skill(skill_name="Cooking")
-skill_3.save()
-skill_4 = Skill(skill_name="Table Tennis")
-skill_4.save()
-skill_5 = Skill(skill_name="Python")
-skill_5.save()
+group_2 = Group(group_name="BankersAccuity", description="Passionate about Java, Big Data, and Innovative Development? Outstanding Activities available at Accuity!", manager=user_2)
+group_2.save()
 
-uskill_1 = UserSkill(user=user_1, skill=skill_4, scale=1)
-uskill_1.save()
-uskill_2 = UserSkill(user=user_1, skill=skill_2, scale=2)
-uskill_2.save()
-uskill_3 = UserSkill(user=user_1, skill=skill_3, scale=8)
-uskill_3.save()
-uskill_4 = UserSkill(user=user_2, skill=skill_2, scale=4)
-uskill_4.save()
-uskill_5 = UserSkill(user=user_2, skill=skill_3, scale=5)
-uskill_5.save()
-uskill_6 = UserSkill(user=user_2, skill=skill_4, scale=6)
-uskill_6.save()
-uskill_7 = UserSkill(user=user_3, skill=skill_3, scale=2)
-uskill_7.save()
-uskill_8 = UserSkill(user=user_3, skill=skill_2, scale=8)
-uskill_8.save()
-uskill_9 = UserSkill(user=user_3, skill=skill_4, scale=9)
-uskill_9.save()
-uskill_10 = UserSkill(user=user_4, skill=skill_3, scale=2)
-uskill_10.save()
-uskill_11 = UserSkill(user=user_4, skill=skill_4, scale=4)
-uskill_11.save()
-uskill_12 = UserSkill(user=user_4, skill=skill_1, scale=7)
-uskill_12.save()
-uskill_13 = UserSkill(user=user_4, skill=skill_2, scale=10)
-uskill_13.save()
-uskill_14 = UserSkill(user=user_5, skill=skill_3, scale=2)
-uskill_14.save()
-uskill_15 = UserSkill(user=user_5, skill=skill_4, scale=7)
-uskill_15.save()
-uskill_16 = UserSkill(user=user_6, skill=skill_2, scale=6)
-uskill_16.save()
-uskill_17 = UserSkill(user=user_6, skill=skill_1, scale=2)
-uskill_17.save()
-uskill_18 = UserSkill(user=user_6, skill=skill_3, scale=4)
-uskill_18.save()
-uskill_19 = UserSkill(user=user_6, skill=skill_4, scale=10)
-uskill_19.save()
-uskill_20 = UserSkill(user=user_7, skill=skill_3, scale=2)
-uskill_20.save()
-uskill_21 = UserSkill(user=user_7, skill=skill_2, scale=10)
-uskill_21.save()
-uskill_22 = UserSkill(user=user_8, skill=skill_3, scale=1)
-uskill_22.save()
-uskill_23 = UserSkill(user=user_8, skill=skill_4, scale=10)
-uskill_23.save()
+group_3 = Group(group_name="GQR", description="Discuss the current state of affairs and plan for the future of KVM, its surrounding infrastructure, and management tools.", manager=user_3)
+group_3.save()
+
+group_4 = Group(group_name="Yummy Recipes", description="Delicious, healthy meals made easy. Whether you are a great cook or just a wanna-a-be or even if you hate to cook...you will love the taste and ease of your Yummy Recipes!", manager=user_4)
+group_4.save()
+
+group_5 = Group(group_name="National Soccer Coaches Association of America", description="This group will connect people who are members of the NSCAA or interested non-NSCAA members who are soccer coaches", manager=user_5)
+group_5.save()
+
+membership_1=Membership(member=user_1,group=group_1, status=True)
+membership_1.save()
+membership_2=Membership(member=user_2,group=group_2, status=True)
+membership_2.save()
+membership_3=Membership(member=user_3,group=group_3, status=True)
+membership_3.save()
+membership_4=Membership(member=user_4,group=group_4, status=True)
+membership_4.save()
+membership_5=Membership(member=user_1,group=group_2, status=False)
+membership_5.save()
+membership_6=Membership(member=user_2,group=group_3, status=True)
+membership_6.save()
+membership_7=Membership(member=user_3,group=group_4, status=True)
+membership_7.save()
+membership_8=Membership(member=user_4,group=group_1, status=True)
+membership_8.save()
+membership_9=Membership(member=user_1,group=group_3, status=True)
+membership_9.save()
+membership_10=Membership(member=user_2,group=group_4, status=False)
+membership_10.save()
+membership_11=Membership(member=user_3,group=group_1, status=True)
+membership_11.save()
+membership_12=Membership(member=user_4,group=group_2, status=True)
+membership_12.save()
+
+
+event_1=Event(group=group_1, event_name="Prototyping for Success, Power and Unlimited Riches", created=datetime.date(2013, 11, 1), ended=datetime.date(2013, 11, 2), status=True,
+	details="In advertising, the best way to sell in a concept has always been to show it. Create a storyboard. Do a sketch. But today, some of the biggest ideas are digital, and to effectively convey them, traditional prototyping tools fall short. So creatives have had to get a lot more, well, creative. They are coming up with imaginative ways to articulate the richness and magic of interactive experiences. Here, Google Creative Lab shares examples and advice to help bring your idea to life.")
+event_1.save()
+
+event_2=Event(group=group_1, event_name="A powerfully simple way to monitor your Web & Mobile applications", created=datetime.date(2013, 11, 8), ended=datetime.date(2013, 11, 12), status=True,
+	details="Responsible for design and development for a wide range of satellite sub-systems, like Adaptive Coding & Modulation and Automatic Uplink Power Control systems in order to optimize over-the-air transmission and prevent weather-related fading from causing communication on the link to be disrupted.Designed, implemented and delivered a Scheduler Server for inbound and outbound Quality of Service management which involves the monitoring and adaptation of Satellite Remote Terminals quality levels.")
+event_2.save()
+
+event_3=Event(group=group_1, event_name="Our Grads Speak Multiple Languages: HTML5, iOS & ROI", created=datetime.date(2013, 11, 20), ended=datetime.date(2014, 11, 25), status=True,
+	details="Master of Science in Management Information Systems is a business degree unlike any other. It prepares graduates to impact business goals by leveraging web and mobile technology.")
+event_3.save()
+
+event_4=Event(group=group_2, event_name="TechNet Webcast: Successfully Deploy Project Server on VMware with Shared Infrastructure", ended=datetime.date(2013, 11, 2), created=datetime.date(2012, 12, 20),status=False,
+ details="Virtualizing Microsoft Project Server 2010 provides many benefits, but there are a number of decisions that you must carefully consider. This webcast highlights the key decision points around architecting a Project Server 2010 deployment utilizing VMware on shared infrastructure.")
+event_4.save()
+
+event_5=Event(group=group_2, event_name="This Is Microsoft Dynamics GP", created=datetime.date(2013, 4, 3), ended=datetime.date(2013, 5, 2), status=False,
+	details="Please join us to learn how Microsoft Dynamics GP connects the many moving parts of your organization to give you better control over and visibility into what's going on in your business. The ability to make smart business decisions can have a direct impact on your bottom line--turning higher margins into a better cash position. With liquidity, more things become possible, which ultimately leads to growth, shareholder value, security for staff, and increased job satisfaction.")
+event_5.save()
+
+event_5=Event(group=group_2, event_name="Visual Studio Team System Lab Management ", created=datetime.date(2013, 11, 12), ended=datetime.date(2013, 11, 20), status=True,
+	details="This session will cover Visual Studio Team System Lab Management, including what is Lab Management, the benefits of Lab Management and implementation strategies. In addition, the session will include a basic implementation of a build/deploy/test workflow using Visual Studio and Lab Management.")
+event_5.save()
+
+event_6=Event(group=group_3, event_name="Feel your freedom", created=datetime.date(2013, 5, 20), ended=datetime.date(2013, 6, 2), status=False,
+	details="The Embedded Linux Conference Europe (ELCE) is the premier vendor-neutral technical conference for companies and developers using Linux in embedded products. This conference, now in it's 7th year, has the largest collection of sessions dedicated exclusively to embedded Linux and embedded Linux developers. ELCE is embedded Linux experts talking about solutions to your embedded Linux problems. ELCE consists of 2 days of presentations, tutorials and Bird-of-a-Feather sessions.")
+event_6.save()
+
+event_6=Event(group=group_4, event_name="Culinary training Celebrity Chef Paul Virant to deliver keynote address at Colorado Culinary Academy inaugural graduation ceremony! ", created=datetime.date(2013, 5, 20), status=True,
+	details="Colorado Culinary Academy is much more than a cooking school. We offer professional culinary, chef and cooking school programs that allow you to enter the modern professional kitchen or other professional food-related endeavor. http://bit.ly/1eduapC")
+event_6.save()
+
+event_7=Event(group=group_4, event_name="Edinburgh International Conference ", created=datetime.date(2013, 9, 24), ended=datetime.date(2013, 10, 2), status=False,
+	details="Have the courage to feel your freedom Authentic Transformation in 100 days-Video Blogging Challenge -Day 99 mothernaturelovesyou.com To be yourself fully every day in everything that you do means to live wholeheartedly and with courage. Although we all play certain roles in our lives-mother , daughter, checkout assistant, sister, friend.....the list goes on every day.")
+event_7.save()
+
+event_8=Event(group=group_5, event_name="Soccer Business", created=datetime.date(2013, 10, 14), ended=datetime.date(2013, 10, 20), status=True,
+	details="Luis Figo's Network90 rapidly becoming the online destination for the football industry. Network90: A New Place For The Industry To Meet fcbusiness.co.uk Luis Figo's Network90, the free, private members' network for the pro football industry has rapidly become the online destination for current and former players, agents, teams, associations and sports business professionals. ")
+event_8.save()

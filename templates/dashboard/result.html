@@ -8,90 +8,33 @@
 <%def name="title()">${ text }</%def>
 <%def name="js_defer()">
     ${ parent.js_defer() }
-	<script>
-	$(document).ready(function() {
-		$("#inputForm").validate({
-			rules: {
-				strength: "required",
-				weakness: "required"
-			},
-			messages: {
-				strength: "Please enter your strength",
-				weakness: "Please enter your weakness"
-			}
-		});
-	});
-	</script>
 </%def>
 
-<!--<style type="text/css">-->
-	<!--#content{-->
-		<!--margin: 50px 0px 20px 0px;-->
-                <!--position: fixed;-->
-	<!--}-->
-   <!--#username{-->
-      <!--font-family: arial;-->
-      <!--font-size:small;-->
-   <!--}-->
-	<!--#content_search{-->
-		<!--margin: 0 auto;-->
-		<!--max-width: 960px;-->
-	<!--}-->
-	<!--footer{-->
-		<!--text-align:center;-->
-		<!--font-size:12px;-->
-                <!--/*border-top: 2px dashed #000;*/-->
-                <!--background-color: black;-->
-                <!--color:white;-->
-                <!--width: 100%;-->
-                <!--letter-spacing: 3px;-->
-	<!--}-->
-        
-        <!--.d2{width:700px; height:300px; position:absolute; top:40%; left:50%; z-index:1;/*background-color:#FF0;*/}-->
-        <!--.d3{ width:700px; height:300px; position:relative; top:-50%; left:-50%;/*background-color:#06C;*/}-->
-        
-
-<!--</style>-->
-
-<p class="text-info">Study Together</p>
-<form id="inputForm" action="result" method="get">
-    <fieldset>
-        <div class="form-inline">
-            <input type="text" name="skill" id="skill" placeholder="Skill">
-            <input type="submit" value="Search" class="btn btn-primary" id="search">
+<br />
+<form class="form-inline" id="inputForm" action="result" method="get" role="form">
+    <div class="col-lg-12">
+        <div class="input-group">
+            <input class="form-control" type="text" name="skill" id="skill" placeholder="Skill">
+            <span class="input-group-btn">
+                <button class="btn btn-default" type="submit" value="Search">Search</button>
+            </span>
         </div>
-    </fieldset>
+    </div>
 </form>
 
+<br />
 
-<!--<div id="content" class="d2">-->
-    <!--<div id="content-inner" class="d3">-->
-        <!--list starts here-->
-        % if  object_list:
-        <ul class="thumbnails">
-            % for person in object_list:
-            <li class="span4">
-            <!--<div class="thumbnail">-->
-            <h3>Name: ${person.first_name} ${person.last_name}</h3>
-            <p>Bio: ${person.bio}</p>
+<div class="col-lg-12">
+    <div class="list-group">
+        <a href="#" class="list-group-item">
+            <h4 class="list-group-item-heading">List group item heading</h4>
+            <p class="list-group-item-text">dfdfsadfjasd fjlkasdkfasdf lkasdjfas ddfsdfkjas ldkjfk.lasj dlkfasdklj</p>
+        </a>
+    </div>
+</div>
 
-            Contact Info:
-            <p>Email: ${person.email}</p>
-            <p>Ph: ${person.phonenumber}</p>
 
-            Strength:
-            % for s in person.user_skills.filter(scale__gte=6):
-            <p>${s.skill.skill_name}</p>
-            % endfor
-
-            Weakness:
-            % for s in person.user_skills.filter(scale__lte=5):
-            <p>${s.skill.skill_name}</p>
-            % endfor
-            </li>
-            % endfor
-        </ul>
-        % endif
-        <!--</div>-->
-    <!--</div>-->
-<!--</div>-->
+% if object_list:
+    % for group in object_list:
+    % endfor
+% endif

@@ -25,4 +25,10 @@ class system {
             source => "/vagrant/files/bash_profile.sh";
     }
 
+    file {
+        "/etc/localtime":
+            ensure  => present,
+            source => "/usr/share/zoneinfo/America/Chicago"
+    }
+
 }

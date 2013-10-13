@@ -24,24 +24,13 @@
 	</script>
 </%def>
 
-<!--<div id="content" class="d2">-->
-    <!--<div id="content-inner" class="d3">-->
-        <!--<div id="content-right">-->
-            <!--<article>-->
-                    <!--<img src="http://i.imgur.com/yIWtLs5.png"/>-->
-            <!--</article>-->
-        <!--</div>-->
-        <!--<div id="content-left">-->
-        <h1>Study Together</h1><br/>
-        <p class="text-info"> <em>Find which group you want to join in: </em></p>
-        <form class="form-horizontal" id="inputForm" action="result" method="get">
-            <div class="control-group">
-                <input class="span12" type="text" name="skill" id="skill" placeholder="Skill">
-            </div>
-            <div class="control-group">
-                <input type="submit" value="Search" class="btn btn-primary span12" id="search">
-            </div>
-        </form>
-        <!--</div>-->
-    <!--</div>-->
-<!--</div>-->
+<h1>Study Together</h1>
+<p class="text-info"> <em>Find which group you want to join in: </em></p>
+<form class="form-horizontal" id="inputForm" action="result" method="get" role="form">
+    <div class="form-group">
+        <input class="form-control col-xs-12" type="text" name="skill" id="skill" placeholder="Skill">
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Search" class="btn btn-primary col-xs-12" id="search">
+    </div>
+</form>

@@ -35,7 +35,8 @@ class User(models.Model):
         default='',
         blank=True,
     )
-  
+    created = models.DateTimeField(auto_now_add=True)
+    changed = models.DateTimeField(auto_now=True)  
 
     def __unicode__(self):
         return self.email
@@ -56,6 +57,8 @@ class Group(models.Model):
         blank=True,
     )    
     manager = models.ForeignKey(User)
+    created = models.DateTimeField(auto_now_add=True)
+    changed = models.DateTimeField(auto_now=True)  
 
     def __unicode__(self):
         return self.name
@@ -68,8 +71,9 @@ class Membership(models.Model):
 
     member = models.ForeignKey(User)
     group = models.ForeignKey(Group)
-    status=models. BooleanField(default=False)
-
+    status=models. PositiveSmallIntegerField(default=1)
+    created = models.DateTimeField(auto_now_add=True)
+    changed = models.DateTimeField(auto_now=True) 
     def __unicode__(self):
         return self.id
 
@@ -85,13 +89,17 @@ class Event(models.Model):
         blank=False,
     )    
     #dateAdded=models.DateField(blank=True )
-    created = models.DateTimeField(auto_now=False, auto_now_add=False, blank=True)
-    ended = models.DateTimeField(auto_now=False, auto_now_add=False,  blank=True)
+    start_time = models.DateTimeField(blank=True)
+    end_time = models.DateTimeField(blank=True)
+
+    created = models.DateTimeField(auto_now_add=True)
+    changed = models.DateTimeField(auto_now=True) 
+
     location=models.CharField(
         max_length=50,
         default='',
         blank=False)
-    status= models. BooleanField(default=False)
+    status=models. PositiveSmallIntegerField(default=1)
     details = models.CharField(
         max_length=800,
         default='',

@@ -25,9 +25,17 @@ class GroupInfoView(DetailView):
 
 class ResultView(ListView):
     template_name = 'dashboard/result.html'
+    paginate_by = 30
+
+    def get_queryset(self):
+        group_field = self.request.GET.get("group_name", None)
+
+        return Group.objects.filter(
+            group_name__icontains=group_field,
+        )
 
     def get_context_data(self, **kwargs):
-        context = super(DashboardView, self).get_context_data(**kwargs)
+        context = super(ResultView, self).get_context_data(**kwargs)
         context['text'] = 'Hello World, Purple Team'
         return context
 

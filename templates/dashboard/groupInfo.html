@@ -1,5 +1,7 @@
+<%
+	import time
+%>
 <%inherit file="/layouts/base.html" />
-
 <%def name="css_files()">
     ${ parent.css_files() }
     <!--<link href="/static/css/index.css" rel="stylesheet">-->
@@ -10,10 +12,7 @@
     ${ parent.js_defer() }
 </%def>
 
-<button type="button" class="btn btn-default btn-lg">
-  <span class="glyphicon glyphicon-star"></span> Star
-</button>
-
+<div class="col-xs-12">
 <!--<div id="content" class="d2">-->
     <!--<div id="content-inner" class="d3">-->
         <!--list starts here-->
@@ -22,20 +21,29 @@
             <div class="text-info">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${group.description}</div>
 				
 				<hr>
-            Manager:${group.manager.first_name} ${group.manager.last_name}
+				<div>
+            <p> <i class="glyphicon glyphicon-user"> </i> ${group.manager.first_name} ${group.manager.last_name}</p>
             <p> <i class="glyphicon glyphicon-envelope"> </i> <a href="mailto:${group.manager.email}"> ${group.manager.email}</a> </p>
             <p> <i class="glyphicon glyphicon-earphone"> </i> 
 				${group.manager.phonenumber}</p>
+				</div>
 				
-				<hr>
-				% if event:
-	            <div class="text-info"> 
-					Events:</div><br/>
-	            % for e in event:
-	            <h4>${e.name}</h4>
-					<span class="label label-default">${e.start_time} - ${e.end_time}</span>
+				
+				% if events:
+	            <ul class="nav nav-tabs nav-tabs">
+					  <li class="active"><a href="#">Events</a></li>
+					</ul><br/>
+	            % for e in events:
+	            <h4>${e.event_name}</h4>
+					<span class="label label-default">
+					<% 
+						e.start_time = time.strftime("%a, %d %b %Y %H:%M",e.start_time.timetuple())
+						e.end_time = time.strftime("%a, %d %b %Y %H:%M",e.end_time.timetuple())
+					%>
+						${e.start_time} - ${e.end_time}
+					</span>
 					<span class="label label-primary">${e.location}</span>
-					<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${e.description}</p>
+					<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${e.details}</p>
 					<hr>
 	            % endfor
 				% endif
@@ -43,3 +51,4 @@
         <!--</div>-->
     <!--</div>-->
 <!--</div>-->
+</div>

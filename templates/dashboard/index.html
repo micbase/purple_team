@@ -24,13 +24,19 @@
 	</script>
 </%def>
 
-<h1>Study Together</h1>
-<p class="text-info"> <em>Find which group you want to join in: </em></p>
-<form class="form-horizontal" id="inputForm" action="result" method="get" role="form">
-    <div class="form-group">
-        <input class="form-control col-xs-12" type="text" name="skill" id="skill" placeholder="Skill">
-    </div>
-    <div class="form-group">
-        <input type="submit" value="Search" class="btn btn-primary col-xs-12" id="search">
-    </div>
-</form>
+<div class="col-xs-12">
+    <h1>Study Together</h1>
+    <p class="text-info"> <em>Find which group you want to join in: </em></p>
+    <form class="form-horizontal" id="inputForm" action="result" method="get" role="form">
+        <div class="form-group ">
+            <div class="col-xs-12">
+                <input class="form-control" type="text" name="group_name" id="group_name" placeholder="Group Name">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-xs-12">
+                <input type="submit" value="Search" class="btn btn-primary col-xs-12" id="search">
+            </div>
+        </div>
+    </form>
+</div>

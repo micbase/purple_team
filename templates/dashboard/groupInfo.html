@@ -28,10 +28,10 @@
 				${group.manager.phonenumber}</p>
 				
 				<hr>
-				% if events:
+				% if event:
 	            <div class="text-info"> 
 					Events:</div><br/>
-	            % for e in events:
+	            % for e in event:
 	            <h4>${e.name}</h4>
 					<span class="label label-default">${e.start_time} - ${e.end_time}</span>
 					<span class="label label-primary">${e.location}</span>

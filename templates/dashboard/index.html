@@ -2,26 +2,12 @@
 
 <%def name="css_files()">
     ${ parent.css_files() }
-    <link href="/static/css/index.css" rel="stylesheet">
+    <!--<link href="/static/css/index.css" rel="stylesheet">-->
 </%def>
 
 <%def name="title()">Study Together</%def>
 <%def name="js_defer()">
     ${ parent.js_defer() }
-	<script>
-	$(document).ready(function() {
-		$("#inputForm").validate({
-			rules: {
-				strength: "required",
-				weakness: "required"
-			},
-			messages: {
-				strength: "Please enter your strength",
-				weakness: "Please enter your weakness"
-			}
-		});
-	});
-	</script>
 </%def>
 
 <div class="col-xs-12">

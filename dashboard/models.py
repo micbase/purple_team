@@ -57,6 +57,7 @@ class Group(models.Model):
         blank=True,
     )    
     manager = models.ForeignKey(User)
+    type=models.PositiveSmallIntegerField(default=1)
     created = models.DateTimeField(auto_now_add=True)
     changed = models.DateTimeField(auto_now=True)  
 

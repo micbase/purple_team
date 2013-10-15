@@ -3,7 +3,7 @@ import datetime
 
 user_1 = User(email="farquharsonWWW@gmail.com", password="purpleTeam",
 	 first_name="Deborah", last_name="Farquharson",
-	phonenumber="7739881897", bio="Senior Java Swing Developer Java, Swing, Java RMI")
+	phonenumber="2249881897", bio="Senior Java Swing Developer Java, Swing, Java RMI")
 user_1.save()
 
 
@@ -15,13 +15,13 @@ user_2.save()
 
 user_3 = User(email="gToroosian@u.northwestern.edu",password="purpleTeam",
 	 first_name="Greg", last_name="Toroosian",
-	phonenumber="8478078707", bio="Linux Systems Programmer, Leading Futures Trading Firm; Linux, Kernel, Sockets, Reporting Scripts")
+	phonenumber="8478078523", bio="Linux Systems Programmer, Leading Futures Trading Firm; Linux, Kernel, Sockets, Reporting Scripts")
 user_3.save()
 
 
 user_4 = User(email="rRydbeck@fgcu.edu",password="purpleTeam",
 	 first_name="Rachael", last_name="Rydbeck",
-	phonenumber="7739881897", bio="'The Organic Gourmet' Chef, Author, Speaker, Cooking Classes, Wellness Coach")
+	phonenumber="7739661897", bio="'The Organic Gourmet' Chef, Author, Speaker, Cooking Classes, Wellness Coach")
 user_4.save()
 
 user_5 = User(email="aDulany@gmail.com",password="purpleTeam",

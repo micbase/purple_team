@@ -1,7 +1,7 @@
 from dashboard.models import User, Group, Membership, Event
 import datetime
 
-user_1 = User(email="zhuxiaofengWWW@gmail.com", password="purpleTeam",
+user_1 = User(email="farquharsonWWW@gmail.com", password="purpleTeam",
 	 first_name="Deborah", last_name="Farquharson",
 	phonenumber="7739881897", bio="Senior Java Swing Developer Java, Swing, Java RMI")
 user_1.save()

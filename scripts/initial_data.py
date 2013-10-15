@@ -31,19 +31,19 @@ user_5.save()
 
 
 
-group_1 = Group(group_name="CyberCoders", description="We are a technology driven business and the technical landscape here is both advanced and constantly changing as we explore new and more effective ways of creating our products.", manager=user_1)
+group_1 = Group(group_name="CyberCoders", description="We are a technology driven business and the technical landscape here is both advanced and constantly changing as we explore new and more effective ways of creating our products.", manager=user_1, type=1)
 group_1.save()
 
-group_2 = Group(group_name="BankersAccuity", description="Passionate about Java, Big Data, and Innovative Development? Outstanding Activities available at Accuity!", manager=user_2)
+group_2 = Group(group_name="BankersAccuity", description="Passionate about Java, Big Data, and Innovative Development? Outstanding Activities available at Accuity!", manager=user_2, type=1)
 group_2.save()
 
-group_3 = Group(group_name="GQR", description="Discuss the current state of affairs and plan for the future of KVM, its surrounding infrastructure, and management tools.", manager=user_3)
+group_3 = Group(group_name="GQR", description="Discuss the current state of affairs and plan for the future of KVM, its surrounding infrastructure, and management tools.", manager=user_3, type=1)
 group_3.save()
 
-group_4 = Group(group_name="Yummy Recipes", description="Delicious, healthy meals made easy. Whether you are a great cook or just a wanna-a-be or even if you hate to cook...you will love the taste and ease of your Yummy Recipes!", manager=user_4)
+group_4 = Group(group_name="Yummy Recipes", description="Delicious, healthy meals made easy. Whether you are a great cook or just a wanna-a-be or even if you hate to cook...you will love the taste and ease of your Yummy Recipes!", manager=user_4, type=1)
 group_4.save()
 
-group_5 = Group(group_name="National Soccer Coaches Association of America", description="This group will connect people who are members of the NSCAA or interested non-NSCAA members who are soccer coaches", manager=user_5)
+group_5 = Group(group_name="National Soccer Coaches Association of America", description="This group will connect people who are members of the NSCAA or interested non-NSCAA members who are soccer coaches", manager=user_5, type=1)
 group_5.save()
 
 membership_1=Membership(member=user_1,group=group_1, status=1)

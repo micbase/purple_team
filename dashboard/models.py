@@ -85,7 +85,7 @@ class Event(models.Model):
 
     group = models.ForeignKey(Group)
     event_name = models.CharField(
-        max_length=250,
+        max_length=300,
         default='',
         blank=False,
     )    

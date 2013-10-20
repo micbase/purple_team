@@ -45,18 +45,29 @@ class User(models.Model):
         db_table = 'Users'
 
 
-class Group(models.Model):
-    group_name = models.CharField(
+class Class(models.Model):
+    class_name = models.CharField(
         max_length=150,
         default='',
         blank=False,
     )
-    description = models.CharField(
-        max_length=400,
-        default='',
-        blank=True,
-    )    
-    manager = models.ForeignKey(User)
+	professor_firstname = models.CharField(
+		max_length = 50,
+		default = '',
+		blank = True,
+	)
+	professor_lastname = models.CharField(
+		max_length = 50,
+		default = '',
+		blank = True,
+	)
+    weekdays = models.CharField(
+		max_length = 50,
+		default = '',
+		blank = False,
+	)
+    time = models.DateTimeField(blank=False)
+	
     created = models.DateTimeField(auto_now_add=True)
     changed = models.DateTimeField(auto_now=True)  
 
@@ -64,52 +75,56 @@ class Group(models.Model):
         return self.name
 
     class Meta:
-        db_table = 'Groups'
+        db_table = 'Classes'
 
 
-class Membership(models.Model):
-
-    member = models.ForeignKey(User)
-    group = models.ForeignKey(Group)
-    status=models. PositiveSmallIntegerField(default=1)
-    created = models.DateTimeField(auto_now_add=True)
-    changed = models.DateTimeField(auto_now=True) 
-    def __unicode__(self):
-        return self.id
-
-    class Meta:
-        db_table = 'Memberships'
-
-class Event(models.Model):
-
-    group = models.ForeignKey(Group)
-    event_name = models.CharField(
-        max_length=250,
+class Post(models.Model):
+	title = models.CharField(
+        max_length=150,
         default='',
         blank=False,
-    )    
-    #dateAdded=models.DateField(blank=True )
-    start_time = models.DateTimeField(blank=True)
-    end_time = models.DateTimeField(blank=True)
+    )
+	content = models.CharField(
+        max_length=500,
+        default='',
+        blank=False,
+    )
+
+    author = models.ForeignKey(User)
+    class_id = models.ForeignKey(Class)  #class is a resevered word, so I made it class_id   
+    
+	# status=models. PositiveSmallIntegerField(default=1)
+    created = models.DateTimeField(auto_now_add=True)
+    changed = models.DateTimeField(auto_now=True) 
+    def __unicode__(self):
+        return self.id
+
+    class Meta:
+        db_table = 'Posts'
+
+class Reply(models.Model):
+	title = models.CharField(
+        max_length=150,
+        default='',
+        blank=False,
+    )
+	content = models.CharField(
+        max_length=500,
+        default='',
+        blank=False,
+    )
+
+    author = models.ForeignKey(User)
+    post = models.ForeignKey(Post)
+
 
     created = models.DateTimeField(auto_now_add=True)
     changed = models.DateTimeField(auto_now=True) 
-
-    location=models.CharField(
-        max_length=50,
-        default='',
-        blank=False)
-    status=models. PositiveSmallIntegerField(default=1)
-    details = models.CharField(
-        max_length=800,
-        default='',
-        blank=True,
-    ) 
 
     def __unicode__(self):
         return self.id
 
     class Meta:
-        db_table = 'Events'
+        db_table = 'Replies'
 
      

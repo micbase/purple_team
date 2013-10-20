@@ -11,11 +11,12 @@
 </%def>
 
 <div class="col-xs-12">
-    %if course:
+    %if topics:
     <div class="list-group">
         <h3>${course.course_name} Topics</h3>
+        <a class="btn btn-success" href="/create_topic">Create a Topic</a>
         <br />
-        
+
         %for topic in topics:
         <a href="/topics/${ topic.id }" class="list-group-item">
             <h4 class="list-group-item-heading">${ topic.topic_name }</h4>

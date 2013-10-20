@@ -87,5 +87,5 @@ post_7.save()
 post_8=Post(post_content="I didn't finish it yet. Can I email you a few problems I have?", post_author=user_2, topic=topic_5)
 post_8.save()
 
-post_9=Postpost(post_content="Yeah.. I like him so much!", post_author=user_4, topic=topic_6)
+post_9=Post(post_content="Yeah.. I like him so much!", post_author=user_4, topic=topic_6)
 post_9.save()

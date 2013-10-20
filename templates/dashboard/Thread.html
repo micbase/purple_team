@@ -1,0 +1,32 @@
+<%inherit file="/layouts/base.html" />
+
+<%def name="css_files()">
+    ${ parent.css_files() }
+        <!--<link href="/static/css/index.css" rel="stylesheet">-->
+</%def>
+
+<%def name="title()">${ text }</%def>
+<%def name="js_defer()">
+    ${ parent.js_defer() }
+</%def>
+
+<div class="col-xs-12">
+     % if topic:
+        <h3> ${topic.topic_name} </h3>
+        <div class="text-muted"> ${topic.user} : &nbsp;${topic.posttime.strtime("%a, %d %b %Y %H:%M")}
+            <button type="button" class="btn btn-success"><a href="post_contenat.html">Reply</a></button>
+        </div>
+        <span class="text-info">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${ topic.content} </span>
+
+        <hr>
+        <dl class="dl-horizontal">
+            % for item in topic.reply:
+                <dt> ${item.reply_user} </dt>
+                <dd> ${item.reply_content}&nbsp;&nsbp;&nbsp;&nbsp;&nbsp;&nbsp;: ${item.reply_time.strtime("%a, %d %b %Y %H:%M")} </dd>
+            % endfor
+        </dl>
+        <br />
+        <button type="button" class="btn btn-success"><a href="post_content.html">Reply</a></button>
+     % endif
+</div>
+

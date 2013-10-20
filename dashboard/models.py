@@ -51,23 +51,22 @@ class Class(models.Model):
         default='',
         blank=False,
     )
-	professor_firstname = models.CharField(
-		max_length=50,
-		default='',
-		blank=True,
-	)
-	professor_lastname = models.CharField(
-		max_length = 50,
-		default = '',
-		blank = True,
-	)
+    professor_firstname = models.CharField(
+        max_length=50,
+        default='',
+        blank=True,
+    )
+    professor_lastname = models.CharField(
+        max_length = 50,
+        default = '',
+        blank = True,
+    )
     class_time = models.CharField(
-		max_length = 20,
-		default = '',
-		blank = False,
-	)
-	
-	manager = models.ForeignKey(User)
+        max_length = 20,
+        default = '',
+        blank = False,
+    )
+    manager = models.ForeignKey(User)
     created = models.DateTimeField(auto_now_add=True)
     changed = models.DateTimeField(auto_now=True)  
 
@@ -79,17 +78,16 @@ class Class(models.Model):
 
 
 class Topic(models.Model):
-	topic_title = models.CharField(
+    topic_title = models.CharField(
         max_length=150,
         default='',
         blank=False,
     )
-	topic_content = models.CharField(
+    topic_content = models.CharField(
         max_length=500,
         default='',
         blank=False,
     )
-
     topic_author = models.ForeignKey(User)
     class_id = models.ForeignKey(Class)  #class is a resevered word, so I made it class_id   
     
@@ -103,15 +101,13 @@ class Topic(models.Model):
         db_table = 'Topics'
 
 class Post(models.Model):
-	post_content = models.CharField(
+    post_content = models.CharField(
         max_length=500,
         default='',
         blank=False,
     )
-
     post_author = models.ForeignKey(User)
     topic = models.ForeignKey(Topic)
-
 
     created = models.DateTimeField(auto_now_add=True)
     changed = models.DateTimeField(auto_now=True) 

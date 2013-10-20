@@ -52,22 +52,22 @@ class Class(models.Model):
         blank=False,
     )
 	professor_firstname = models.CharField(
-		max_length = 50,
-		default = '',
-		blank = True,
+		max_length=50,
+		default='',
+		blank=True,
 	)
 	professor_lastname = models.CharField(
 		max_length = 50,
 		default = '',
 		blank = True,
 	)
-    weekdays = models.CharField(
-		max_length = 50,
+    class_time = models.CharField(
+		max_length = 20,
 		default = '',
 		blank = False,
 	)
-    time = models.DateTimeField(blank=False)
 	
+	manager = models.ForeignKey(User)
     created = models.DateTimeField(auto_now_add=True)
     changed = models.DateTimeField(auto_now=True)  
 
@@ -78,19 +78,19 @@ class Class(models.Model):
         db_table = 'Classes'
 
 
-class Post(models.Model):
-	title = models.CharField(
+class Topic(models.Model):
+	topic_title = models.CharField(
         max_length=150,
         default='',
         blank=False,
     )
-	content = models.CharField(
+	topic_content = models.CharField(
         max_length=500,
         default='',
         blank=False,
     )
 
-    author = models.ForeignKey(User)
+    topic_author = models.ForeignKey(User)
     class_id = models.ForeignKey(Class)  #class is a resevered word, so I made it class_id   
     
 	# status=models. PositiveSmallIntegerField(default=1)
@@ -100,22 +100,17 @@ class Post(models.Model):
         return self.id
 
     class Meta:
-        db_table = 'Posts'
+        db_table = 'Topics'
 
-class Reply(models.Model):
-	title = models.CharField(
-        max_length=150,
-        default='',
-        blank=False,
-    )
-	content = models.CharField(
+class Post(models.Model):
+	post_content = models.CharField(
         max_length=500,
         default='',
         blank=False,
     )
 
-    author = models.ForeignKey(User)
-    post = models.ForeignKey(Post)
+    post_author = models.ForeignKey(User)
+    topic = models.ForeignKey(Topic)
 
 
     created = models.DateTimeField(auto_now_add=True)
@@ -125,6 +120,6 @@ class Reply(models.Model):
         return self.id
 
     class Meta:
-        db_table = 'Replies'
+        db_table = 'Posts'
 
      

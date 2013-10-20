@@ -1,0 +1,28 @@
+<%inherit file="/layouts/base.html" />
+
+<%def name="css_files()">
+    ${ parent.css_files() }
+        <!--<link href="/static/css/index.css" rel="stylesheet">-->
+</%def>
+
+<%def name="title()">Topics - Study Together</%def>
+<%def name="js_defer()">
+    ${ parent.js_defer() }
+</%def>
+
+<div class="col-xs-12">
+    %if course:
+    <div class="list-group">
+        <h3>${course.course_name} Topics</h3>
+        <br />
+        
+        %for topic in topics:
+        <a href="/topics/${ topic.id }" class="list-group-item">
+            <h4 class="list-group-item-heading">${ topic.topic_name }</h4>
+            <p class="list-group-item-text">${ topic.content }</p>
+        </a>
+        %endfor
+        </div>
+    %endif
+</div>
+

@@ -14,7 +14,7 @@
      % if topic:
         <h3> ${topic.topic_title} </h3>
         <div class="text-muted"> ${topic.topic_author.first_name} - ${topic.created.strftime("%a, %d %b %Y %H:%M")}
-            <button type="button" class="btn btn-success"><a href="post_content">Reply</a></button>
+            <div class="pull-right"> <a class="btn btn-success" href="post_content">Reply</a></div>
         </div>
         <span class="text-info">${ topic.topic_content} </span>
 
@@ -26,6 +26,6 @@
             % endfor
         </dl>
         <br />
-        <button type="button" class="col-xs-12 btn btn-success"><a href="post_content">Reply</a></button>
+         <a class="btn btn-success col-xs-12" href="post_content">Reply</a>
      % endif
 </div>

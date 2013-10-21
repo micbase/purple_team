@@ -13,14 +13,14 @@
 <div class="col-xs-12">
     %if topics:
     <div class="list-group">
-        <h3>${course.course_name} Topics</h3>
+        <h3>${course_name} Topics</h3>
         <a class="btn btn-success" href="/create_topic">Create a Topic</a>
         <br />
 
         %for topic in topics:
         <a href="/posts/${ topic.id }" class="list-group-item">
-            <h4 class="list-group-item-heading">${ topic.topic_name }</h4>
-            <p class="list-group-item-text">${ topic.content }</p>
+            <h4 class="list-group-item-heading">${ topic.topic_title }</h4>
+            <p class="list-group-item-text">${ topic.topic_content }</p>
         </a>
         %endfor
         </div>

@@ -3,33 +3,14 @@ from django.views.generic import ListView, TemplateView, DetailView
 from dashboard.models import Class,Topic, Post
 
 
-class GroupInfoView(DetailView):
-    template_name = 'dashboard/groupInfo.html'
-
-    def get_object(self):
-        return get_object_or_404(Group, pk=self.kwargs["group_id"])
-
-    def get_events(self):
-        post_list = Post.objects.filter(
-            group_id=self.kwargs["group_id"],
-        )
-        return post_list
-
-    def get_context_data(self, **kwargs):
-        context = super(GroupInfoView, self).get_context_data(**kwargs)
-        context['text'] = 'Hello World, Purple Team'
-        context['events'] = self.get_events()
-        return context
-
-
 class ResultView(ListView):
-    template_name = 'dashboard/index.html'
+    template_name = 'dashboard/result.html'
     paginate_by = 30
 
     def get_queryset(self):
-        group_field = self.request.GET.get("group_name", None)
-        return Group.objects.filter(
-            group_name__icontains=group_field,
+        class_field = self.request.GET.get("class_name", "")
+        return Class.objects.filter(
+            class_name__icontains=class_field,
         )
 
     def get_context_data(self, **kwargs):
@@ -45,6 +26,7 @@ class DashboardView(TemplateView):
         context = super(DashboardView, self).get_context_data(**kwargs)
         context['text'] = 'Purple Team'
         return context
+
 
 class CreateTopicView(TemplateView):
     template_name = 'dashboard/create_topic.html'
@@ -93,16 +75,16 @@ class TopicsView(ListView):
     paginate_by = 30
 
     def get_queryset(self):
-        class_field = self.request.GET.get("group_name", None)
-        c = Class.objects.get(class_name = class_field)
+        class_id = self.kwargs['class_id']
+        self.course = Class.objects.get(pk=class_id)
         return Topic.objects.filter(
-            class_id=c.id,
+            class_id=class_id,
         )
 
     def get_context_data(self, **kwargs):
         context = super(TopicsView, self).get_context_data(**kwargs)
         context['text'] = 'Purple Team'
-        context['course_name'] =  self.request.GET.get("group_name", None)
+        context['course_name'] =  self.course.class_name
         context['topics'] = self.get_queryset()
         return context
 
@@ -111,13 +93,13 @@ class PostsView(ListView):
     paginate_by = 30
 
     def get_queryset(self):
-        topic_id = self.kwargs['group_id']
+        topic_id = self.kwargs['topic_id']
         return Post.objects.filter(
             topic=topic_id,
         )
     def get_topic(self):
-        topic_id = self.kwargs['group_id']
-        return Topic.objects.get(id=topic_id)
+        topic_id = self.kwargs['topic_id']
+        return Topic.objects.get(pk=topic_id)
 
 
     def get_context_data(self, **kwargs):

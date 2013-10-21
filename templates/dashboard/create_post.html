@@ -1,0 +1,29 @@
+<%inherit file="/layouts/base.html" />
+
+ <%def name="css_files()">
+     ${ parent.css_files() }
+         <!--<link href="/static/css/index.css" rel="stylesheet">-->
+ </%def>
+ <%inherit file="/layouts/base.html" />
+
+ <%def name="css_files()">
+     ${ parent.css_files() }
+         <!--<link href="/static/css/index.css" rel="stylesheet">-->
+ </%def>
+
+ <%def name="title()">${ text }</%def>
+ <%def name="js_defer()">
+     ${ parent.js_defer() }
+ </%def>
+
+ <div class="col-xs-12">
+     <h3>Post</h3>
+     <form class="form-horizontal" id="inputForm" action="result"
+ method="get" role="form">
+         <div class="col-xs-12">
+            <textarea class="input-block-level" rows="5" placeholder="Enter
+ Brief Description Here."></textarea>
+         </div>
+         <br>
+         <div class="form-group">
+             <div class="col-xs-12">

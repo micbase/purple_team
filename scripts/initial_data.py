@@ -31,10 +31,10 @@ user_5.save()
 
 
 
-class_1 = Class(class_name="EECS 212 (formerly 310*) Mathematical Foundations of Computer Science", professor_firstname="Hendrix", professor_lastname="William", class_time="24,1100,1220",manager=user_1)
+class_1 = Class(class_name="EECS 212 (formerly 310) Mathematical Foundations of Computer Science", professor_firstname="Hendrix", professor_lastname="William", class_time="24,1100,1220",manager=user_1)
 class_1.save()
 
-class_2 = Class(class_name="EECS 214 (formerly 311*) Data Structures and Data Management", professor_firstname="Scheuermann", professor_lastname="Peter", class_time="135,1200,1250",manager=user_1)
+class_2 = Class(class_name="EECS 214 (formerly 311) Data Structures and Data Management", professor_firstname="Scheuermann", professor_lastname="Peter", class_time="135,1200,1250",manager=user_1)
 class_2.save()
 
 class_3 = Class(class_name="EECS  336 - Design & Analysis of Algorithms", professor_firstname="Hartline", professor_lastname="Jason", class_time="24,1530,1650",manager=user_1)

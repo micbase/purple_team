@@ -47,7 +47,7 @@ class DashboardView(TemplateView):
         return context
 
 class CreateTopicView(TemplateView):
-    template_name = 'dashboard/Create_topic.html'
+    template_name = 'dashboard/create_topic.html'
 
     def get_queryset(self):
         title_field = self.request.GET.get("topic_name", None)
@@ -58,22 +58,33 @@ class CreateTopicView(TemplateView):
         return render_to_response('index.html')
 
     def get_context_data(self, **kwargs):
-        context = super(CreateGroupPage, self).get_context_data(**kwargs)
+        context = super(CreateTopicView, self).get_context_data(**kwargs)
         context['text'] = 'Hello World, Purple Team'
         return context
 
 class CreatePostContentView (TemplateView):
-    template_name = 'dashboard/posts.html'
+    template_name = 'dashboard/create_post.html'
 
     def get_queryset(self):
         topic_field = self.kwargs["topic_id"]
         content_field = self.request.GET.get("post_content", None)
         p=Post(post_content=content_field, topic=topic_field )
         p.save()
-        return render_to_response('groupInfo.html')
+        return render_to_response('create_post.html')
 
     def get_context_data(self, **kwargs):
         context = super(CreatePostContentView, self).get_context_data(**kwargs)
+        context['text'] = 'Hello World, Purple Team'
+        return context
+
+class CreatePostView (TemplateView):
+    template_name = 'dashboard/create_post.html'
+
+    def get_queryset(self):
+        return render_to_response('create_post.html')
+
+    def get_context_data(self, **kwargs):
+        context = super(CreatePostView, self).get_context_data(**kwargs)
         context['text'] = 'Hello World, Purple Team'
         return context
 

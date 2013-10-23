@@ -10,6 +10,7 @@ class system {
         [
             "vim",
             "curl",
+            "exuberant-ctags",
             "git-core",
             "build-essential",
             "python-pip",

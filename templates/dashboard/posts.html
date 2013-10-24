@@ -26,6 +26,20 @@
             % endfor
         </dl>
         <br />
-         <a class="btn btn-success col-xs-12" href="post_content">Reply</a>
-     % endif
+
+        <form class="form-horizontal" id="inputform" action="/create_post/${topic_id}" method="POST" role="form">
+            <div class="col-xs-12">
+                % for field in form
+                    <div class="form-group">
+                        ${ field }
+                    </div>
+                % endfor
+            </div>
+            <br>
+            <div class="col-xs-12">
+                <div class="form-group">
+                    <input class="btn btn-success col-xs-12" type="submit " type="Create">
+                </div>
+            </div>
+         </form>
 </div>

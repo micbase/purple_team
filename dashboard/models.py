@@ -71,7 +71,7 @@ class Class(models.Model):
     changed = models.DateTimeField(auto_now=True)  
 
     def __unicode__(self):
-        return self.name
+        return self.class_name
 
     class Meta:
         db_table = 'Classes'

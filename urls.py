@@ -10,7 +10,7 @@ urlpatterns = patterns('',
     url(r'^posts/(?P<topic_id>\d+)$', dashboard.views.PostsView.as_view(), name='group-info'),
     url(r'^posts/post_content$', dashboard.views.CreatePostView.as_view(), name='group-info'),
     url(r'^posts/result$', dashboard.views.CreatePostContentView.as_view(), name='group-info'),
-    url(r'^create_topic$', dashboard.views.CreateTopicView.as_view(), name='group-info'),
+    url(r'^create_topic/(?P<class_id>\d+)$', dashboard.views.CreateTopicView.as_view(), name='create_topic'),
 
 )
 

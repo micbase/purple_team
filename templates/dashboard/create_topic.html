@@ -5,17 +5,20 @@
         <!--<link href="/static/css/index.css" rel="stylesheet">-->
 </%def>
 
-<%def name="title()">${ text }</%def>
+<%def name="title()">create post</%def>
 <%def name="js_defer()">
     ${ parent.js_defer() }
 </%def>
 
 <div class="col-xs-12">
     <h3>Create a Topic</h3>
-    <form class="form-horizontal" id="inputForm" action="result" method="get" role="form">
+    <form class="form-horizontal" id="inputForm" action="/create_topic/${class_id}" method="post" role="form">
         <div class="col-xs-12">
-           <h5> Topic Title: <input class="form-control" type="TEXT" name="topic_title" placeholder="Enter Topic Title" size="24"><br></h5>
-           <h5> Content:</h5><textarea class="input-block-level" rows="5" placeholder="Enter Brief Description Here."></textarea>
+           % for field in form:
+           <div class="form-group">
+            ${field}
+            </div>
+           % endfor
         </div>
         <br>
         <div class="form-group">

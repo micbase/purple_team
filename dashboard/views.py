@@ -1,7 +1,8 @@
 from django.shortcuts import get_object_or_404, render_to_response
 from django.views.generic import ListView, TemplateView, DetailView
 from dashboard.models import Class,Topic, Post
-
+from django.views.generic import CreateView
+from dashboard.forms import CreateTopicForm
 
 class ResultView(ListView):
     template_name = 'dashboard/result.html'
@@ -28,21 +29,23 @@ class DashboardView(TemplateView):
         return context
 
 
-class CreateTopicView(TemplateView):
+class CreateTopicView(CreateView):
     template_name = 'dashboard/create_topic.html'
+    model = Topic
+    form_class = CreateTopicForm
+    success_url = '/topics'
 
-    def get_queryset(self):
-        title_field = self.request.GET.get("topic_name", None)
-        content_field = self.request.GET.get("topic_desc", None)
-        id_field = self.kwargs["class_id"]
-        t=Topic(topic_title=topic_field, topic_content=content_field, topic_id=id_field )
-        t.save()
-        return render_to_response('index.html')
+    def get_form_kwargs(self):
+        kwargs = super(CreateTopicView, self).get_form_kwargs()
+        kwargs['class_id'] = self.kwargs['class_id']
+        kwargs['author'] = 2
+        return kwargs
 
     def get_context_data(self, **kwargs):
         context = super(CreateTopicView, self).get_context_data(**kwargs)
-        context['text'] = 'Hello World, Purple Team'
+        context['class_id'] =  self.kwargs['class_id']
         return context
+
 
 class CreatePostContentView (TemplateView):
     template_name = 'dashboard/create_post.html'

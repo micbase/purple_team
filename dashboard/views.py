@@ -33,7 +33,9 @@ class CreateTopicView(CreateView):
     template_name = 'dashboard/create_topic.html'
     model = Topic
     form_class = CreateTopicForm
-    success_url = '/topics'
+
+    def get_success_url(self):
+        return '/topics/' + self.kwargs['class_id']
 
     def get_form_kwargs(self):
         kwargs = super(CreateTopicView, self).get_form_kwargs()
@@ -43,26 +45,11 @@ class CreateTopicView(CreateView):
 
     def get_context_data(self, **kwargs):
         context = super(CreateTopicView, self).get_context_data(**kwargs)
-        context['class_id'] =  self.kwargs['class_id']
+        context['class_id'] = self.kwargs['class_id']
         return context
 
 
-class CreatePostContentView (TemplateView):
-    template_name = 'dashboard/create_post.html'
-
-    def get_queryset(self):
-        topic_field = self.kwargs["topic_id"]
-        content_field = self.request.GET.get("post_content", None)
-        p=Post(post_content=content_field, topic=topic_field )
-        p.save()
-        return render_to_response('create_post.html')
-
-    def get_context_data(self, **kwargs):
-        context = super(CreatePostContentView, self).get_context_data(**kwargs)
-        context['text'] = 'Hello World, Purple Team'
-        return context
-
-class CreatePostView (TemplateView):
+class CreatePostView(TemplateView):
     template_name = 'dashboard/create_post.html'
 
     def get_queryset(self):
@@ -73,9 +60,11 @@ class CreatePostView (TemplateView):
         context['text'] = 'Hello World, Purple Team'
         return context
 
+
 class TopicsView(ListView):
     template_name = 'dashboard/topics.html'
     paginate_by = 30
+    context_object_name = 'topics'
 
     def get_queryset(self):
         class_id = self.kwargs['class_id']
@@ -86,10 +75,9 @@ class TopicsView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super(TopicsView, self).get_context_data(**kwargs)
-        context['text'] = 'Purple Team'
-        context['course_name'] =  self.course.class_name
-        context['topics'] = self.get_queryset()
+        context['course'] =  self.course
         return context
+
 
 class PostsView(ListView):
     template_name = 'dashboard/posts.html'

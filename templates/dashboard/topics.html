@@ -11,8 +11,8 @@
 </%def>
 
 <div class="col-xs-12">
-    <h3>${course_name} Topics</h3>
-    <a class="col-xs-12 btn btn-success" href="/create_topic">Create a Topic</a>
+    <h3>${course.class_name} Topics</h3>
+    <a class="col-xs-12 btn btn-success" href="/create_topic/${ course.pk }">Create a Topic</a>
     <br />
     <br />
     %if topics:

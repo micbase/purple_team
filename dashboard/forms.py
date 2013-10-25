@@ -1,23 +1,23 @@
 from django import forms
-from dashboard.models import Class, Topic, Post
+from dashboard.models import Topic
 
 
 class CreateTopicForm(forms.ModelForm):
 
-    def __init__(self, class_id, author, *args, **kwargs):
+    def __init__(self, course_id, author, *args, **kwargs):
         super(CreateTopicForm, self).__init__(*args, **kwargs)
-        self.instance.class_id_id = class_id
-        self.instance.topic_author_id = author
+        self.instance.course_id = course_id
+        self.instance.author = author
 
     class Meta:
         model = Topic
-        exclude = ['topic_author', 'class_id']
+        exclude = ['author', 'course', 'status']
         widgets = {
-                'topic_title': forms.TextInput(attrs={
+                'title': forms.TextInput(attrs={
                     'class': 'form-control',
                     'placeholder': 'Enter Topic Title'
                     }),
-                'topic_content': forms.TextInput(attrs={
+                'content': forms.TextInput(attrs={
                     'class': 'form-control',
                     'placeholder': 'Enter Topic Content'
                     })

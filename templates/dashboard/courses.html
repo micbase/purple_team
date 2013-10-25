@@ -2,19 +2,19 @@
 
 <%def name="css_files()">
     ${ parent.css_files() }
-    <!--<link href="/static/css/index.css" rel="stylesheet">-->
+    ## <link href="/static/css/index.css" rel="stylesheet">
 </%def>
 
-<%def name="title()">${ text }</%def>
+<%def name="title()">Course List</%def>
 <%def name="js_defer()">
     ${ parent.js_defer() }
 </%def>
 
 <br />
-<form class="form-inline" id="inputForm" action="result" method="get" role="form">
+<form class="form-inline" id="inputForm" action="/" method="get" role="form">
     <div class="col-xs-12">
         <div class="input-group">
-            <input class="form-control" type="text" name="class_name" id="class_name" placeholder="Class Name">
+            <input class="form-control" type="text" name="course_name" id="course_name" placeholder="Course Name">
             <span class="input-group-btn">
                 <button class="btn btn-default" type="submit" value="Search">Search</button>
             </span>
@@ -29,12 +29,10 @@
     <div class="list-group">
         % for course in object_list:
         <a href="/topics/${ course.id }" class="list-group-item">
-            <h4 class="list-group-item-heading">${ course.class_name }</h4>
+            <h4 class="list-group-item-heading">${ course.name }</h4>
             <p class="list-group-item-text">${ course.professor_firstname + " " + course.professor_lastname}</p>
         </a>
         % endfor
     </div>
     % endif
 </div>
-
-

@@ -5,9 +5,11 @@ import dashboard.views
 import auth.views
 
 urlpatterns = patterns('',
-    url(r'^$', dashboard.views.ResultView.as_view(), name='course-list'),
-    url(r'^topics/(?P<class_id>\d+)$', dashboard.views.TopicsView.as_view(), name='topics'),
-    url(r'^create_topic/(?P<class_id>\d+)$', dashboard.views.CreateTopicView.as_view(), name='create_topic'),
+    url(r'^$', dashboard.views.CourseView.as_view(), name='course_list'),
+
+    url(r'^topics/(?P<course_id>\d+)$', dashboard.views.TopicsView.as_view(), name='topics'),
+    url(r'^create_topic/(?P<course_id>\d+)$', dashboard.views.CreateTopicView.as_view(), name='create_topic'),
+
     url(r'^posts/(?P<topic_id>\d+)$', dashboard.views.PostsView.as_view(), name='group-info'),
     url(r'^posts/post_content$', dashboard.views.CreatePostView.as_view(), name='group-info'),
 

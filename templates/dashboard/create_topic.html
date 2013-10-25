@@ -2,7 +2,7 @@
 
 <%def name="css_files()">
     ${ parent.css_files() }
-        <!--<link href="/static/css/index.css" rel="stylesheet">-->
+    ## <link href="/static/css/index.css" rel="stylesheet">
 </%def>
 
 <%def name="title()">Create Topic</%def>
@@ -12,11 +12,14 @@
 
 <div class="col-xs-12">
     <h3>Create a Topic</h3>
-    <form class="form-horizontal" id="inputForm" action="/create_topic/${class_id}" method="post" role="form">
+    <form class="form-horizontal" id="inputForm" action="/create_topic/${course_id}" method="post" role="form">
         <div class="col-xs-12">
             % for field in form:
-            <div class="form-group">
-                ${field}
+            <div class="form-group ${ 'has-error' if field.errors else '' }">
+                ${ field }
+                % if field.errors:
+                <span class="help-block">${ field.errors[0] }</span>
+                % endif
             </div>
             % endfor
         </div>

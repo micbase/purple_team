@@ -17,7 +17,7 @@ class CreateTopicForm(forms.ModelForm):
                     'class': 'form-control',
                     'placeholder': 'Enter Topic Title'
                     }),
-                'content': forms.TextInput(attrs={
+                'content': forms.Textarea(attrs={
                     'class': 'form-control',
                     'placeholder': 'Enter Topic Content'
                     })

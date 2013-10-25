@@ -1,8 +1,16 @@
+
 from django.shortcuts import get_object_or_404, render_to_response
-from django.views.generic import ListView, TemplateView, DetailView
-from dashboard.models import Class,Topic, Post
-from django.views.generic import CreateView
-from dashboard.forms import CreateTopicForm
+from django.views.generic import (
+    CreateView,
+    ListView,
+    TemplateView
+)
+
+from dashboard.forms import (
+    CreateTopicForm,
+)
+from dashboard.models import Class, Topic, Post
+
 
 class ResultView(ListView):
     template_name = 'dashboard/result.html'
@@ -75,7 +83,7 @@ class TopicsView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super(TopicsView, self).get_context_data(**kwargs)
-        context['course'] =  self.course
+        context['course'] = self.course
         return context
 
 
@@ -88,10 +96,10 @@ class PostsView(ListView):
         return Post.objects.filter(
             topic=topic_id,
         )
+
     def get_topic(self):
         topic_id = self.kwargs['topic_id']
         return Topic.objects.get(pk=topic_id)
-
 
     def get_context_data(self, **kwargs):
         context = super(PostsView, self).get_context_data(**kwargs)

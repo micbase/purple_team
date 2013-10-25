@@ -30,21 +30,39 @@ user_5 = User(email="aDulany@gmail.com",password="purpleTeam",
 user_5.save()
 
 
+membership_1 = Membership(member = user_1, class_id = )
+membership_1.save()
 
-class_1 = Class(class_name="EECS 212 (formerly 310) Mathematical Foundations of Computer Science", professor_firstname="Hendrix", professor_lastname="William", class_time="24,1100,1220",manager=user_1)
-class_1.save()
+membership_2 = Membership(member = user_1)
+membership_2.save()
 
-class_2 = Class(class_name="EECS 214 (formerly 311) Data Structures and Data Management", professor_firstname="Scheuermann", professor_lastname="Peter", class_time="135,1200,1250",manager=user_1)
-class_2.save()
+membership_3 = Membership(member = user_1)
+membership_3.save()
 
-class_3 = Class(class_name="EECS  336 - Design & Analysis of Algorithms", professor_firstname="Hartline", professor_lastname="Jason", class_time="24,1530,1650",manager=user_1)
-class_3.save()
+membership_4 = Membership(member = user_1)
+membership_4.save()
 
-class_4 = Class(class_name="EECS  339 - Introduction to Database Systems", professor_firstname="Peter", professor_lastname="Dinda", class_time="135,1600,1650",manager=user_1)
-class_4.save()
+membership_5 = Membership(member = user_1)
+membership_5.save()
 
-class_5 = Class(class_name="EECS 394 - Software Project Management", professor_firstname="Riesbeck", professor_lastname="Chris", class_time="135,1000,1050",manager=user_1)
-class_5.save()
+membership_6 = Membership(member = user_1)
+membership_6.save()
+
+
+course_1 = Course(course_name="EECS 212 (formerly 310) Mathematical Foundations of Computer Science", professor_firstname="Hendrix", professor_lastname="William", manager=user_1)
+course_1.save()
+
+course_2 = Course(course_name="EECS 214 (formerly 311) Data Structures and Data Management", professor_firstname="Scheuermann", professor_lastname="Peter", manager=user_1)
+course_2.save()
+
+course_3 = Course(course_name="EECS  336 - Design & Analysis of Algorithms", professor_firstname="Hartline", professor_lastname="Jason", manager=user_1)
+course_3.save()
+
+course_4 = Course(course_name="EECS  339 - Introduction to Database Systems", professor_firstname="Peter", professor_lastname="Dinda", manager=user_1)
+course_4.save()
+
+course_5 = Course(course_name="EECS 394 - Software Project Management", professor_firstname="Riesbeck", professor_lastname="Chris", manager=user_1)
+course_5.save()
 
 topic_1=Topic(topic_title="Today's class is awesome", topic_content="I really enjoyed today's class. I learned a lot of things about graphs which i've been facinated with.", topic_author=user_3, class_id=class_1)
 topic_1.save()

@@ -45,6 +45,21 @@ class User(models.Model):
         db_table = 'Users'
 
 
+
+class Membership(models.Model):
+
+    member = models.ForeignKey(User)
+    class_id = models.ForeignKey(Class)
+    status=models.BooleanField(default=False)
+
+    def __unicode__(self):
+        return self.id
+
+    class Meta:
+        db_table = 'Memberships'
+
+
+
 class Class(models.Model):
     class_name = models.CharField(
         max_length=150,

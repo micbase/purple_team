@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django.db import models
 
 
+
 class Course(models.Model):
     name = models.CharField(
         max_length=150,
@@ -29,6 +30,38 @@ class Course(models.Model):
 
     class Meta:
         db_table = 'Courses'
+
+
+class CourseSchedule(models.Model):
+    MONDAY = 1
+    TUESDAY = 2
+    WEDNESDAY = 3
+    THURSDAY = 4
+    FRIDAY = 5
+    SATURDAY = 6
+    SUNDAY = 7
+    WEEKDAY_CHOICES = (
+        (MONDAY, 'Monday'),
+        (TUESDAY, 'Tuesday'),
+        (WEDNESDAY, 'Wednesday'),
+        (THURSDAY, 'Thursday'),
+        (FRIDAY, 'Friday'),
+        (SATURDAY, 'Saturday'),
+        (SUNDAY, 'Sunday'),
+    )
+    course = models.ForeignKey(Course)
+    start_time = models.TimeField()
+    end_time = models.TimeField()
+    weekday = models.PositiveSmallIntegerField(choices=WEEKDAY_CHOICES) 
+
+    created = models.DateTimeField(auto_now_add=True)
+    changed = models.DateTimeField(auto_now=True)
+
+    def __unicode__(self):
+        return self.name
+
+    class Meta:
+        db_table = 'CourseSchedules'
 
 
 class Membership(models.Model):

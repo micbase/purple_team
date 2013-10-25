@@ -30,7 +30,7 @@ class AuthView(FormView):
 
 
 class LoginView(AuthView):
-    template_name = 'dashboard/login.html'
+    template_name = 'auth/login.html'
     form_class = LoginForm
 
     def get_success_url(self):
@@ -43,7 +43,7 @@ class LoginView(AuthView):
 
 
 class RegisterView(AuthView):
-    template_name = 'dashboard/register.html'
+    template_name = 'auth/register.html'
     form_class = RegisterForm
     success_url = '/'
 

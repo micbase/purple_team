@@ -5,6 +5,7 @@ from django.views.generic import (
     TemplateView
 )
 
+from auth.views import LoginRequiredMixin
 from dashboard.forms import (
     CreateTopicForm,
 )
@@ -22,7 +23,7 @@ class CourseView(ListView):
         )
 
 
-class CreateTopicView(CreateView):
+class CreateTopicView(LoginRequiredMixin, CreateView):
     template_name = 'dashboard/create_topic.html'
     model = Topic
     form_class = CreateTopicForm

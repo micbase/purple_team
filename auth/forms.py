@@ -7,29 +7,29 @@ from django.contrib.auth.models import User
 class RegisterForm(forms.Form):
     username = forms.CharField(
         widget=forms.TextInput(attrs={
-            'class': 'form-control',
             'placeholder': 'Your Username'
         }))
     password = forms.CharField(
         widget=forms.PasswordInput(attrs={
-            'class': 'form-control',
             'placeholder': 'Your Password'
         }))
     email = forms.EmailField(
         widget=forms.TextInput(attrs={
-            'class': 'form-control',
             'placeholder': 'Your Email Address'
         }))
     first_name = forms.CharField(
         widget=forms.TextInput(attrs={
-            'class': 'form-control',
             'placeholder': 'Your First Name'
         }))
     last_name = forms.CharField(
         widget=forms.TextInput(attrs={
-            'class': 'form-control',
             'placeholder': 'Your Last Name'
         }))
+
+    def __init__(self, *args, **kwargs):
+        super(RegisterForm, self).__init__(*args, **kwargs)
+        for key, field in self.fields.items():
+            field.widget.attrs['class'] = 'form-control'
 
     def clean_username(self):
         count = User.objects.filter(
@@ -65,18 +65,18 @@ class RegisterForm(forms.Form):
 class LoginForm(forms.Form):
     username = forms.CharField(
         widget=forms.TextInput(attrs={
-            'class': 'form-control',
             'placeholder': 'Your Username'
         }))
     password = forms.CharField(
         widget=forms.PasswordInput(attrs={
-            'class': 'form-control',
             'placeholder': 'Your Password'
         }))
 
     def __init__(self, *args, **kwargs):
         super(LoginForm, self).__init__(*args, **kwargs)
         self.user = None
+        for key, field in self.fields.items():
+            field.widget.attrs['class'] = 'form-control'
 
     def clean(self):
         self.user = authenticate(

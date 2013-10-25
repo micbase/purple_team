@@ -1,7 +1,9 @@
 
 from django.contrib.auth.models import User
 
-from dashboard.models import Course, Topic, Post, Membership
+from dashboard.models import Course, Topic, Post, Membership, CourseSchedule
+
+import datetime
 
 user_1 = User.objects.create_user(username="farquharson", email="farquharsonWWW@gmail.com", password="purpleTeam",
     first_name="Deborah", last_name="Farquharson")
@@ -87,20 +89,76 @@ post_9=Post(content="Yeah.. I like him so much!", author=user_4, topic=topic_6)
 post_9.save()
 
 
-membership_1 = Membership(member = user_1, class_id = )
+membership_1 = Membership(member = user_1, course = course_1)
 membership_1.save()
 
-membership_2 = Membership(member = user_1)
+membership_2 = Membership(member = user_2, course = course_2)
 membership_2.save()
 
-membership_3 = Membership(member = user_1)
+membership_3 = Membership(member = user_3, course = course_5)
 membership_3.save()
 
-membership_4 = Membership(member = user_1)
+membership_4 = Membership(member = user_4, course = course_4)
 membership_4.save()
 
-membership_5 = Membership(member = user_1)
+membership_5 = Membership(member = user_5, course = course_3)
 membership_5.save()
 
-membership_6 = Membership(member = user_1)
+membership_6 = Membership(member = user_2, course = course_1)
 membership_6.save()
+
+membership_7 = Membership(member = user_4, course = course_1)
+membership_7.save()
+
+membership_8 = Membership(member = user_3, course = course_2)
+membership_8.save()
+
+membership_9 = Membership(member = user_4, course = course_2)
+membership_9.save()
+
+membership_10 = Membership(member = user_4, course = course_3)
+membership_10.save()
+
+membership_11 = Membership(member = user_2, course = course_4)
+membership_11.save()
+
+
+courseSchedule_1 = CourseSchedule(course = course_1, start_time = datetime.time(11, 00), end_time = datetime.time(12, 20), weekday = 2)
+courseSchedule_1.save()
+
+courseSchedule_2 = CourseSchedule(course = course_1, start_time = datetime.time(11, 00), end_time = datetime.time(12, 20), weekday = 4)
+courseSchedule_2.save()
+
+courseSchedule_3 = CourseSchedule(course = course_2, start_time = datetime.time(11, 00), end_time = datetime.time(12, 20), weekday = 1)
+courseSchedule_3.save()
+
+courseSchedule_4 = CourseSchedule(course = course_2, start_time = datetime.time(12, 00), end_time = datetime.time(12, 50), weekday = 3)
+courseSchedule_4.save()
+
+courseSchedule_5 = CourseSchedule(course = course_2, start_time = datetime.time(12, 00), end_time = datetime.time(12, 50), weekday = 5)
+courseSchedule_5.save()
+
+courseSchedule_6 = CourseSchedule(course = course_3, start_time = datetime.time(15, 30), end_time = datetime.time(16, 50), weekday = 2)
+courseSchedule_6.save()
+
+courseSchedule_7 = CourseSchedule(course = course_3, start_time = datetime.time(15, 30), end_time = datetime.time(16, 50), weekday = 4)
+courseSchedule_7.save()
+
+courseSchedule_8 = CourseSchedule(course = course_4, start_time = datetime.time(16, 00), end_time = datetime.time(16, 50), weekday = 1)
+courseSchedule_8.save()
+
+courseSchedule_9 = CourseSchedule(course = course_4, start_time = datetime.time(16, 00), end_time = datetime.time(16, 50), weekday = 3)
+courseSchedule_9.save()
+
+courseSchedule_10 = CourseSchedule(course = course_4, start_time = datetime.time(16, 00), end_time = datetime.time(16, 50), weekday = 5)
+courseSchedule_10.save()
+
+courseSchedule_11 = CourseSchedule(course = course_5, start_time = datetime.time(10, 00), end_time = datetime.time(10, 50), weekday = 1)
+courseSchedule_11.save()
+
+courseSchedule_12 = CourseSchedule(course = course_5, start_time = datetime.time(10, 00), end_time = datetime.time(10, 50), weekday = 3)
+courseSchedule_12.save()
+
+courseSchedule_13 = CourseSchedule(course = course_5, start_time = datetime.time(10, 00), end_time = datetime.time(10, 50), weekday = 5)
+courseSchedule_13.save()
+

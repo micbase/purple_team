@@ -22,6 +22,11 @@ class CourseView(ListView):
             name__icontains=course_name,
         )
 
+    def get_context_data(self, **kwargs):
+        context = super(CourseView, self).get_context_data(**kwargs)
+        context['course_name'] = self.request.GET.get("course_name", "")
+        return context
+
 
 class CreateTopicView(LoginRequiredMixin, CreateView):
     template_name = 'dashboard/create_topic.html'

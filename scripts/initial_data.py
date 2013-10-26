@@ -5,6 +5,10 @@ from dashboard.models import Course, Topic, Post, Membership, CourseSchedule
 
 import datetime
 
+admin = User.objects.create_user(username="admin", email="noreply@micbase.com", password="purpleTeam",
+    first_name="admin", last_name="admin")
+admin.save()
+
 user_1 = User.objects.create_user(username="farquharson", email="farquharsonWWW@gmail.com", password="purpleTeam",
     first_name="Deborah", last_name="Farquharson")
 user_1.save()

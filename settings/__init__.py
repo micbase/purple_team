@@ -154,3 +154,9 @@ LOGGING = {
 
 MAKO_TEMPLATE_DIRS = TEMPLATE_DIRS
 LOGIN_URL = '/login'
+
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = '587'
+EMAIL_HOST_USER = 'noreply@micbase.com'
+EMAIL_HOST_PASSWORD = '1P@fe89UAx&NSXp'
+EMAIL_USE_TLS = True

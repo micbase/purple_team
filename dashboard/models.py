@@ -2,6 +2,7 @@
 from django.contrib.auth.models import User
 from django.db import models
 
+import dashboard as dashboard_constants
 
 
 class Course(models.Model):
@@ -33,32 +34,17 @@ class Course(models.Model):
 
 
 class CourseSchedule(models.Model):
-    MONDAY = 1
-    TUESDAY = 2
-    WEDNESDAY = 3
-    THURSDAY = 4
-    FRIDAY = 5
-    SATURDAY = 6
-    SUNDAY = 7
-    WEEKDAY_CHOICES = (
-        (MONDAY, 'Monday'),
-        (TUESDAY, 'Tuesday'),
-        (WEDNESDAY, 'Wednesday'),
-        (THURSDAY, 'Thursday'),
-        (FRIDAY, 'Friday'),
-        (SATURDAY, 'Saturday'),
-        (SUNDAY, 'Sunday'),
-    )
     course = models.ForeignKey(Course)
     start_time = models.TimeField()
     end_time = models.TimeField()
-    weekday = models.PositiveSmallIntegerField(choices=WEEKDAY_CHOICES) 
+    weekday = models.PositiveSmallIntegerField(
+        choices=dashboard_constants.WEEKDAY_CHOICES)
 
     created = models.DateTimeField(auto_now_add=True)
     changed = models.DateTimeField(auto_now=True)
 
     def __unicode__(self):
-        return self.name
+        return self.course.name
 
     class Meta:
         db_table = 'CourseSchedules'
@@ -68,7 +54,8 @@ class Membership(models.Model):
 
     member = models.ForeignKey(User)
     course = models.ForeignKey(Course)
-    status = models.PositiveSmallIntegerField(default=1)
+    status = models.PositiveSmallIntegerField(
+        default=dashboard_constants.ENROLL_COURSE)
 
     def __unicode__(self):
         return self.id

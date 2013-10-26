@@ -1,15 +1,28 @@
 
+import datetime
+
+from django.contrib.auth.models import User
+from django.core.mail import EmailMessage
+from django.http import HttpResponse
 from django.views.generic import (
     CreateView,
     ListView,
-    TemplateView
+    TemplateView,
+    View,
 )
 
 from auth.views import LoginRequiredMixin
+import dashboard as dashboard_constants
 from dashboard.forms import (
     CreateTopicForm,
 )
-from dashboard.models import Course, Topic, Post
+from dashboard.models import (
+    Course,
+    CourseSchedule,
+    Membership,
+    Post,
+    Topic,
+)
 
 
 class CourseView(ListView):
@@ -97,3 +110,54 @@ class PostsView(ListView):
         context = super(PostsView, self).get_context_data(**kwargs)
         context['topic'] = self.get_topic()
         return context
+
+
+class NotificationView(View):
+    http_method_names = ['post']
+
+    def post(self, request, *args, **kwargs):
+        token = request.POST.get("token", "")
+        if token == "0lI3#5atxifYmbjuVm#0":
+
+            weekday = datetime.datetime.today().weekday() + 1
+            current = datetime.datetime.now()
+            #weekday = 2
+            #current = datetime.datetime(2012, 11, 22, 12, 20, 00)
+            time_window_left = current + datetime.timedelta(minutes=-2)
+            time_window_right = current + datetime.timedelta(minutes=2)
+
+            course_list = CourseSchedule.objects.filter(
+                end_time__gte=time_window_left,
+                end_time__lte=time_window_right,
+                weekday=weekday,
+            )
+
+            admin = User.objects.get(username='admin')
+
+            for course in course_list:
+                memberships = Membership.objects.filter(
+                    course=course.course,
+                    status=dashboard_constants.ENROLL_COURSE,
+                )
+                recipient_list = [membership.member.email for membership in memberships]
+
+                new_topic = Topic(
+                    title="How is today's class?",
+                    content="Have some discussions about today's class!",
+                    author=admin,
+                    course=course.course,
+                )
+                new_topic.save()
+
+                email = EmailMessage(
+                    "How is today's class?",
+                    'Discuss at http://192.168.42.2/posts/' + str(new_topic.id),
+                    'Study Together <noreply@micbase.com>',
+                    recipient_list,
+                    bcc=['394purple@googlegroups.com', ],
+                )
+                email.send()
+
+            return HttpResponse("OK")
+        else:
+            return HttpResponse("ERROR")

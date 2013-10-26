@@ -16,6 +16,8 @@ urlpatterns = patterns('',
     url(r'^login$', auth.views.LoginView.as_view(), name='login'),
     url(r'^logout$', auth.views.LogoutView.as_view(), name='logout'),
     url(r'^register$', auth.views.RegisterView.as_view(), name='register'),
+
+    url(r'^send_notification$', dashboard.views.NotificationView.as_view(), name='send_notification'),
 )
 
 if settings.DEBUG:

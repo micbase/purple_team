@@ -39,6 +39,21 @@ class CourseView(ListView):
         context = super(CourseView, self).get_context_data(**kwargs)
         context['course_name'] = self.request.GET.get("course_name", "")
         return context
+        
+class UserProfileView(LoginRequiredMixin, ListView):
+    template_name = 'dashboard/user_profile.html'
+    paginate_by = 20
+
+    def get_queryset(self):
+        users=self.request.user
+        return Course.objects.filter(
+            students=users,
+        )
+
+    def get_context_data(self, **kwargs):
+        context = super(UserProfileView, self).get_context_data(**kwargs)
+        context['course_name'] = self.request.GET.get("course_name", "")
+        return context
 
 
 class CreateTopicView(LoginRequiredMixin, CreateView):

@@ -6,6 +6,7 @@ import auth.views
 
 urlpatterns = patterns('',
     url(r'^$', dashboard.views.CourseView.as_view(), name='course_list'),
+    url(r'^user_profile$', dashboard.views.UserProfileView.as_view(), name='user_profile'),
 
     url(r'^topics/(?P<course_id>\d+)$', dashboard.views.TopicsView.as_view(), name='topics'),
     url(r'^create_topic/(?P<course_id>\d+)$', dashboard.views.CreateTopicView.as_view(), name='create_topic'),

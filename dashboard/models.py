@@ -21,7 +21,8 @@ class Course(models.Model):
         default='',
         blank=True,
     )
-    manager = models.ForeignKey(User)
+    manager = models.ForeignKey(User, related_name='manager+')
+    students = models.ManyToManyField(User, related_name='students+', through='Membership')
 
     created = models.DateTimeField(auto_now_add=True)
     changed = models.DateTimeField(auto_now=True)

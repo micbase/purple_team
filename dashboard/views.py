@@ -4,6 +4,7 @@ import datetime
 from django.contrib.auth.models import User
 from django.core.mail import EmailMessage
 from django.http import HttpResponse
+from django.shortcuts import get_object_or_404
 from django.views.generic import (
     CreateView,
     ListView,
@@ -104,7 +105,7 @@ class TopicsView(ListView):
 
     def get_course(self):
         course_id = self.kwargs['course_id']
-        return Course.objects.get(pk=course_id)
+        return get_object_or_404(Course, pk=course_id)
 
     def is_course_joined(self):
         course_id = self.kwargs['course_id']

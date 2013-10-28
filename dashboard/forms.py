@@ -4,9 +4,9 @@ from dashboard.models import Topic,Post
 
 class CreateTopicForm(forms.ModelForm):
 
-    def __init__(self, course_id, author, *args, **kwargs):
+    def __init__(self, course, author, *args, **kwargs):
         super(CreateTopicForm, self).__init__(*args, **kwargs)
-        self.instance.course_id = course_id
+        self.instance.course = course
         self.instance.author = author
 
     class Meta:

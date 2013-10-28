@@ -62,7 +62,8 @@ class CreateTopicView(LoginRequiredMixin, CreateView):
 
     def get_form_kwargs(self):
         kwargs = super(CreateTopicView, self).get_form_kwargs()
-        kwargs['course_id'] = self.kwargs['course_id']
+        course_id = self.kwargs['course_id']
+        kwargs['course'] = get_object_or_404(Course, pk=course_id)
         kwargs['author'] = self.request.user
         return kwargs
 

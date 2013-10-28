@@ -32,4 +32,17 @@
             <input class="col-xs-12 btn btn-success" type="submit" value="Join this course">
         </form>
     % endif
+    <a class="col-xs-12 btn btn-success" href="/create_topic/${ course.pk }">Create a Topic</a>
+    <br />
+    <br />
+    %if topics:
+    <div class="list-group">
+        %for topic in topics:
+        <a href="/create_post/${ topic.id }" class="list-group-item">
+            <h4 class="list-group-item-heading">${ topic.title }</h4>
+            <p class="list-group-item-text">${ topic.content }</p>
+        </a>
+        %endfor
+        </div>
+    %endif
 </div>

@@ -12,7 +12,7 @@
 
 <div class="col-xs-12">
     <h3>${course.name} Topics</h3>
-    % if user in course.students.all():
+    % if course_joined:
         <a class="col-xs-12 btn btn-success" href="/create_topic/${ course.pk }">Create a Topic</a>
         <br />
         <br />

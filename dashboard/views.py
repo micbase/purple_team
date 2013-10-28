@@ -106,9 +106,25 @@ class TopicsView(ListView):
         course_id = self.kwargs['course_id']
         return Course.objects.get(pk=course_id)
 
+    def is_course_joined(self):
+        course_id = self.kwargs['course_id']
+        user = self.request.user
+        if user.is_authenticated():
+            try:
+                membership = Membership.objects.get(
+                    member=user,
+                    course_id=course_id,
+                )
+                return (membership.status == dashboard_constants.ENROLL_COURSE)
+            except Membership.DoesNotExist:
+                return False
+        else:
+            return False
+
     def get_context_data(self, **kwargs):
         context = super(TopicsView, self).get_context_data(**kwargs)
         context['course'] = self.get_course()
+        context['course_joined'] = self.is_course_joined()
         return context
 
 

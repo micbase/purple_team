@@ -18,7 +18,7 @@
     %if topics:
     <div class="list-group">
         %for topic in topics:
-        <a href="/posts/${ topic.id }" class="list-group-item">
+        <a href="/post_content/${ topic.id }" class="list-group-item">
             <h4 class="list-group-item-heading">${ topic.title }</h4>
             <p class="list-group-item-text">${ topic.content }</p>
         </a>

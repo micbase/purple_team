@@ -14,7 +14,7 @@ from django.views.generic import (
 from auth.views import LoginRequiredMixin
 import dashboard as dashboard_constants
 from dashboard.forms import (
-    CreateTopicForm,
+    CreateTopicForm,CreatePostForm,
 )
 from dashboard.models import (
     Course,
@@ -60,15 +60,26 @@ class CreateTopicView(LoginRequiredMixin, CreateView):
         context['course_id'] = self.kwargs['course_id']
         return context
 
-
-class CreatePostView(TemplateView):
+class CreatePostView(LoginRequiredMixin, CreateView):
     template_name = 'dashboard/create_post.html'
+    model = Post
+    form_class = CreatePostForm
+
+    def get_success_url(self):
+        return '/posts/' + self.kwargs['topic_id']
+
+    def get_form_kwargs(self):
+        kwargs = super(CreatePostView, self).get_form_kwargs()
+        kwargs['topic_id'] = self.kwargs['topic_id']
+        kwargs['author'] = self.request.user
+        return kwargs
 
     def get_context_data(self, **kwargs):
         context = super(CreatePostView, self).get_context_data(**kwargs)
-        context['text'] = 'Hello World, Purple Team'
+        context['topic_id'] = self.kwargs['topic_id']
+        context['topic'] = Topic.objects.get(pk=self.kwargs['topic_id'])
+        context['reply'] = Post.objects.filter(topic_id=self.kwargs['topic_id'])
         return context
-
 
 class TopicsView(ListView):
     template_name = 'dashboard/topics.html'

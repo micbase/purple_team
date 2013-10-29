@@ -13,7 +13,7 @@
 <div class="col-xs-12">
         <h3> ${topic.title} </h3>
         <div class="text-muted"> ${topic.author.first_name} - ${topic.created.strftime("%a, %d %b %Y %H:%M")}
-            <div class="pull-right"> <a class="btn btn-success" href="/post_content/${ topic.pk }">Reply</a></div>
+            <div class="pull-right"> <a class="btn btn-success" href="#inputbox">Reply</a></div>
         </div>
         <span class="text-info">${ topic.content} </span>
 
@@ -30,7 +30,8 @@
 </div>
 <div class="col-xs-12">
     <h3>Post</h3>
-     <form class="form-horizontal" id="inputform" action="/post_content/${topic_id}" method="POST" role="form">
+    <form class="form-horizontal" id="inputform" action="/post_content/${topic_id}" method="POST" role="form">
+        <a name="inputbox">
             <div class="col-xs-12">
                 % for field in form:
                     <div class="form-group">
@@ -38,6 +39,7 @@
                     </div>
                 % endfor
             </div>
+            </a>
             <br>
             <div class="col-xs-12">
                 <div class="form-group">

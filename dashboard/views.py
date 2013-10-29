@@ -114,7 +114,7 @@ class CreateTopicView(LoginRequiredMixin, CreateView):
         return context
 
 class CreatePostView(LoginRequiredMixin, CreateView):
-    template_name = 'dashboard/create_post.html'
+    template_name = 'dashboard/posts.html'
     model = Post
     form_class = CreatePostForm
 

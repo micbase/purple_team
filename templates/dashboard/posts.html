@@ -2,10 +2,10 @@
 
 <%def name="css_files()">
     ${ parent.css_files() }
-        <!--<link href="/static/css/index.css" rel="stylesheet">-->
+    ## <link href="/static/css/index.css" rel="stylesheet">
 </%def>
 
-<%def name="title()">asd</%def>
+<%def name="title()">Create Post</%def>
 <%def name="js_defer()">
     ${ parent.js_defer() }
 </%def>
@@ -27,4 +27,22 @@
         <br />
 
       
+</div>
+<div class="col-xs-12">
+    <h3>Post</h3>
+     <form class="form-horizontal" id="inputform" action="/post_content/${topic_id}" method="POST" role="form">
+            <div class="col-xs-12">
+                % for field in form:
+                    <div class="form-group">
+                        ${field}
+                    </div>
+                % endfor
+            </div>
+            <br>
+            <div class="col-xs-12">
+                <div class="form-group">
+                    <input class="btn btn-success col-xs-12" type="submit" value="Reply">
+                </div>
+            </div>
+         </form> 
 </div>

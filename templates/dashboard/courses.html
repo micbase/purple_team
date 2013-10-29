@@ -33,7 +33,6 @@
         <a href="/topics/${ course.id }" class="list-group-item">
             <h4 class="list-group-item-heading">${ course.name }           
             % if user.is_authenticated(): 
-                % if course_joined=="Not available":
                                                 
                     % for student in course.students.all():  
                     % if student.id == user.id:
@@ -41,15 +40,7 @@
                     % else: 
                     % endif                   
                     % endfor 
-
-                %else:
-
-                    % if course_joined==True:
-                        <img src="../static/img/icon.png"/>
-                    % else:
-                    % endif 
-
-                % endif  
+                    
             % else:
                    
             % endif

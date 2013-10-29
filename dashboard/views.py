@@ -34,33 +34,11 @@ class CourseView(ListView):
         course_name = self.request.GET.get("course_name", "")
         return Course.objects.filter(
             name__icontains=course_name,
-        )
-    def is_course_joined(self):
-        course = self.get_queryset()
-        course_name = self.request.GET.get("course_name", "")       
-        course = self.get_queryset()
-        course_name = self.request.GET.get("course_name", "")
-        if course_name=="":
-            return "Not available"            
-        else:
-            user = self.request.user
-            if user.is_authenticated():
-                try:
-                    membership = Membership.objects.get(
-                        member=user,
-                        course=self.get_queryset(),
-                        # id=1
-                    )
-                    return (membership.status == dashboard_constants.ENROLL_COURSE)
-                except Membership.DoesNotExist:
-                    return False
-   
+        ) 
 
     def get_context_data(self, **kwargs):
         context = super(CourseView, self).get_context_data(**kwargs)
         context['course_name'] = self.request.GET.get("course_name", "")
-        context['course_joined'] = self.is_course_joined()
-
         return context
         
 class UserProfileView(LoginRequiredMixin, ListView):

@@ -1,5 +1,5 @@
 from django import forms
-from dashboard.models import Topic,Post
+from dashboard.models import Topic, Post
 
 
 class CreateTopicForm(forms.ModelForm):
@@ -23,6 +23,7 @@ class CreateTopicForm(forms.ModelForm):
                     })
                 }
 
+
 class CreatePostForm(forms.ModelForm):
 
     def __init__(self, topic_id, author, *args, **kwargs):
@@ -35,11 +36,7 @@ class CreatePostForm(forms.ModelForm):
         exclude = ['author', 'topic']
         widgets = {
                 'content': forms.Textarea(attrs={
-                    'class': 'input-block-level',
-                    'rows' : '5',
+                    'class': 'form-control',
                     'placeholder': 'Enter Post Content',
-                    'name' : 'post_content',
-                    'id' : 'post_content'
                     })
                 }
-              

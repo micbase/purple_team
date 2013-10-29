@@ -51,6 +51,18 @@ class UserProfileView(LoginRequiredMixin, ListView):
             students=users,
         )
 
+class JoinClassView(TemplateView):
+    template_name = 'dashboard/topics.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(JoinClassView, self).get_context_data(**kwargs)
+        context['text'] = 'Hello World, Purple Team'
+        member_field = User.objects.get(pk=self.request.user.id)
+        course_field = Course.objects.get(pk=self.kwargs['course_id'])
+        context['course'] = course_field
+        m=Membership(member=member_field, course=course_field, status='1' )
+        m.save()
+        return context
 
 class CreateTopicView(LoginRequiredMixin, CreateView):
     template_name = 'dashboard/create_topic.html'

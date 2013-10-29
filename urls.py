@@ -13,7 +13,7 @@ urlpatterns = patterns('',
 
     url(r'^posts/(?P<topic_id>\d+)$', dashboard.views.CreatePostView.as_view(), name='group-info'),
     url(r'^post_content/(?P<topic_id>\d+)$', dashboard.views.CreatePostView.as_view(), name='group-info'),
-    url(r'^join_course/(?P<course_id>\d+)$', dashboard.views.JoinClassView.as_view(), name='join_course'),
+    url(r'^join_course$', dashboard.views.JoinClassView.as_view(), name='join_course'),
     url(r'^login$', auth.views.LoginView.as_view(), name='login'),
     url(r'^logout$', auth.views.LogoutView.as_view(), name='logout'),
     url(r'^register$', auth.views.RegisterView.as_view(), name='register'),

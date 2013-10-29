@@ -29,7 +29,7 @@
     % else:
         <form action="/join_course" method="POST">
             <input type="TEXT" name="course_id" value="${ course.pk }" hidden>
-            <a class="col-xs-12 btn btn-success" href="/join_course/${ course.pk }" >Join this course</a>
+            <input class="col-xs-12 btn btn-success" type="submit" value="Join this course">
         </form>
     % endif
 </div>

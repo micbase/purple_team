@@ -3,7 +3,7 @@ import datetime
 
 from django.contrib.auth.models import User
 from django.core.mail import EmailMessage
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import get_object_or_404
 from django.views.generic import (
     CreateView,
@@ -51,18 +51,20 @@ class UserProfileView(LoginRequiredMixin, ListView):
             students=users,
         )
 
-class JoinClassView(TemplateView):
-    template_name = 'dashboard/topics.html'
 
-    def get_context_data(self, **kwargs):
-        context = super(JoinClassView, self).get_context_data(**kwargs)
-        context['text'] = 'Hello World, Purple Team'
-        member_field = User.objects.get(pk=self.request.user.id)
-        course_field = Course.objects.get(pk=self.kwargs['course_id'])
-        context['course'] = course_field
-        m=Membership(member=member_field, course=course_field, status='1' )
-        m.save()
-        return context
+class JoinClassView(LoginRequiredMixin, View):
+
+    def post(self, request, **kwargs):
+        user = self.request.user
+        course_id = request.POST.get('course_id', "")
+        membership, created = Membership.objects.get_or_create(
+            member=user,
+            course_id=course_id,
+        )
+        membership.status = dashboard_constants.ENROLL_COURSE
+        membership.save()
+        return HttpResponseRedirect('/topics/' + course_id)
+
 
 class CreateTopicView(LoginRequiredMixin, CreateView):
     template_name = 'dashboard/create_topic.html'
@@ -124,14 +126,12 @@ class TopicsView(ListView):
         course_id = self.kwargs['course_id']
         user = self.request.user
         if user.is_authenticated():
-            try:
-                membership = Membership.objects.get(
-                    member=user,
-                    course_id=course_id,
-                )
-                return (membership.status == dashboard_constants.ENROLL_COURSE)
-            except Membership.DoesNotExist:
-                return False
+            count = Membership.objects.filter(
+                member=user,
+                course_id=course_id,
+                status=dashboard_constants.ENROLL_COURSE
+            ).count()
+            return count >= 1
         else:
             return False
 

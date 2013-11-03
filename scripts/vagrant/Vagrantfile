@@ -54,6 +54,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # argument is a set of non-required options.
   config.vm.synced_folder "~", "/host_home"
   config.vm.synced_folder "~/Documents/projects/purple_team/", "/home/vagrant/htdocs"
+  config.vm.synced_folder "~/Documents/projects/brewer/", "/home/vagrant/brewer"
 
   # Provider-specific configuration so you can fine-tune various
   # backing providers for Vagrant. These expose provider-specific options.
